@@ -1,0 +1,678 @@
+Getting Started: Installation | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Automatic Installation
+Manual Installation
+Creating directories
+The app directory
+The pages directory (optional)
+The public folder (optional)
+Run the Development Server
+Next Steps
+Edit this page on GitHub
+Scroll to top
+Getting Started
+Installation
+Installation
+System Requirements:
+Node.js 18.17
+or later.
+macOS, Windows (including WSL), and Linux are supported.
+Automatic Installation
+We recommend starting a new Next.js app using
+create-next-app
+, which sets up everything automatically for you. To create a project, run:
+Terminal
+npx
+create-next-app@latest
+On installation, you'll see the following prompts:
+Terminal
+What is your project named? my-app
+Would you like to use TypeScript? No / Yes
+Would you like to use ESLint? No / Yes
+Would you like to use Tailwind CSS? No / Yes
+Would you like to use `src/` directory? No / Yes
+Would you like to use App Router? (recommended) No / Yes
+Would you like to customize the default import alias (@/*)? No / Yes
+What import alias would you like configured? @/*
+After the prompts,
+create-next-app
+will create a folder with your project name and install the required dependencies.
+Good to know
+:
+Next.js now ships with
+TypeScript
+,
+ESLint
+, and
+Tailwind CSS
+configuration by default.
+You can optionally use a
+src
+directory
+in the root of your project to separate your application's code from configuration files.
+Manual Installation
+To manually create a new Next.js app, install the required packages:
+Terminal
+npm
+install
+next@latest
+react@latest
+react-dom@latest
+Open your
+package.json
+file and add the following
+scripts
+:
+package.json
+{
+"scripts"
+:
+{
+"dev"
+:
+"next dev"
+,
+"build"
+:
+"next build"
+,
+"start"
+:
+"next start"
+,
+"lint"
+:
+"next lint"
+}
+}
+These scripts refer to the different stages of developing an application:
+dev
+: runs
+next dev
+to start Next.js in development mode.
+build
+: runs
+next build
+to build the application for production usage.
+start
+: runs
+next start
+to start a Next.js production server.
+lint
+: runs
+next lint
+to set up Next.js' built-in ESLint configuration.
+Creating directories
+Next.js uses file-system routing, which means the routes in your application are determined by how you structure your files.
+The
+app
+directory
+For new applications, we recommend using the
+App Router
+. This router allows you to use React's latest features and is an evolution of the
+Pages Router
+based on community feedback.
+Create an
+app/
+folder, then add a
+layout.tsx
+and
+page.tsx
+file. These will be rendered when the user visits the root of your application (
+/
+).
+Create a
+root layout
+inside
+app/layout.tsx
+with the required
+<html>
+and
+<body>
+tags:
+app/layout.tsx
+export
+default
+function
+RootLayout
+({
+children
+,
+}
+:
+{
+children
+:
+React
+.
+ReactNode
+}) {
+return
+(
+<
+html
+lang
+=
+"en"
+>
+<
+body
+>{children}</
+body
+>
+</
+html
+>
+)
+}
+Finally, create a home page
+app/page.tsx
+with some initial content:
+app/page.tsx
+export
+default
+function
+Page
+() {
+return
+<
+h1
+>Hello, Next.js!</
+h1
+>
+}
+Good to know
+: If you forget to create
+layout.tsx
+, Next.js will automatically create this file when running the development server with
+next dev
+.
+Learn more about
+using the App Router
+.
+The
+pages
+directory (optional)
+If you prefer to use the Pages Router instead of the App Router, you can create a
+pages/
+directory at the root of your project.
+Then, add an
+index.tsx
+file inside your
+pages
+folder. This will be your home page (
+/
+):
+pages/index.tsx
+export
+default
+function
+Page
+() {
+return
+<
+h1
+>Hello, Next.js!</
+h1
+>
+}
+Next, add an
+_app.tsx
+file inside
+pages/
+to define the global layout. Learn more about the
+custom App file
+.
+pages/_app.tsx
+import
+type
+{ AppProps }
+from
+'next/app'
+export
+default
+function
+App
+({ Component
+,
+pageProps }
+:
+AppProps
+) {
+return
+<
+Component
+{
+...
+pageProps} />
+}
+Finally, add a
+_document.tsx
+file inside
+pages/
+to control the initial response from the server. Learn more about the
+custom Document file
+.
+pages/_document.tsx
+import
+{ Html
+,
+Head
+,
+Main
+,
+NextScript }
+from
+'next/document'
+export
+default
+function
+Document
+() {
+return
+(
+<
+Html
+>
+<
+Head
+/>
+<
+body
+>
+<
+Main
+/>
+<
+NextScript
+/>
+</
+body
+>
+</
+Html
+>
+)
+}
+Learn more about
+using the Pages Router
+.
+Good to know
+: Although you can use both routers in the same project, routes in
+app
+will be prioritized over
+pages
+. We recommend using only one router in your new project to avoid confusion.
+The
+public
+folder (optional)
+Create a
+public
+folder to store static assets such as images, fonts, etc. Files inside
+public
+directory can then be referenced by your code starting from the base URL (
+/
+).
+Run the Development Server
+Run
+npm run dev
+to start the development server.
+Visit
+http://localhost:3000
+to view your application.
+Edit
+app/page.tsx
+(or
+pages/index.tsx
+) file and save it to see the updated result in your browser.
+Next Steps
+Learn about the files and folders in your Next.js project.
+Getting Started
+Project Structure
+A list of folders and files conventions in a Next.js project
+Previous
+Introduction
+Next
+Project Structure
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

@@ -1,0 +1,460 @@
+Styling: CSS-in-JS | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Disabling JavaScript
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Styling
+CSS-in-JS
+CSS-in-JS
+Examples
+Styled JSX
+Styled Components
+Emotion
+Linaria
+Tailwind CSS + Emotion
+Styletron
+Cxs
+Aphrodite
+Fela
+Stitches
+It's possible to use any existing CSS-in-JS solution.The simplest one is inline styles:
+function
+HiThere
+() {
+return
+<
+p
+style
+=
+{{ color
+:
+'red'
+}}>hi there</
+p
+>
+}
+export
+default
+HiThere
+We bundle
+styled-jsx
+to provide support for isolated scoped CSS.
+The aim is to support "shadow CSS" similar to Web Components, which unfortunately
+do not support server-rendering and are JS-only
+.
+See the above examples for other popular CSS-in-JS solutions (like Styled Components).
+A component using
+styled-jsx
+looks like this:
+function
+HelloWorld
+() {
+return
+(
+<
+div
+>
+Hello world
+<
+p
+>scoped!</
+p
+>
+<
+style
+jsx
+>{
+`
+p {
+color: blue;
+}
+div {
+background: red;
+}
+@media (max-width: 600px) {
+div {
+background: blue;
+}
+}
+`
+}</
+style
+>
+<
+style
+global
+jsx
+>{
+`
+body {
+background: black;
+}
+`
+}</
+style
+>
+</
+div
+>
+)
+}
+export
+default
+HelloWorld
+Please see the
+styled-jsx documentation
+for more examples.
+Disabling JavaScript
+Yes, if you disable JavaScript the CSS will still be loaded in the production build (
+next start
+). During development, we require JavaScript to be enabled to provide the best developer experience with
+Fast Refresh
+.
+Previous
+Tailwind CSS
+Next
+Sass
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

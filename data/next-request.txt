@@ -1,0 +1,592 @@
+Functions: NextRequest | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+cookies
+set(name, value)
+get(name)
+getAll()
+delete(name)
+has(name)
+clear()
+nextUrl
+ip
+geo
+Version History
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Functions
+NextRequest
+NextRequest
+NextRequest extends the
+Web Request API
+with additional convenience methods.
+cookies
+Read or mutate the
+Set-Cookie
+header of the request.
+set(name, value)
+Given a name, set a cookie with the given value on the request.
+// Given incoming request /home
+// Set a cookie to hide the banner
+// request will have a `Set-Cookie:show-banner=false;path=/home` header
+request
+.
+cookies
+.set
+(
+'show-banner'
+,
+'false'
+)
+get(name)
+Given a cookie name, return the value of the cookie. If the cookie is not found,
+undefined
+is returned. If multiple cookies are found, the first one is returned.
+// Given incoming request /home
+// { name: 'show-banner', value: 'false', Path: '/home' }
+request
+.
+cookies
+.get
+(
+'show-banner'
+)
+getAll()
+Given a cookie name, return the values of the cookie. If no name is given, return all cookies on the request.
+// Given incoming request /home
+// [
+//   { name: 'experiments', value: 'new-pricing-page', Path: '/home' },
+//   { name: 'experiments', value: 'winter-launch', Path: '/home' },
+// ]
+request
+.
+cookies
+.getAll
+(
+'experiments'
+)
+// Alternatively, get all cookies for the request
+request
+.
+cookies
+.getAll
+()
+delete(name)
+Given a cookie name, delete the cookie from the request.
+// Returns true for deleted, false is nothing is deleted
+request
+.
+cookies
+.delete
+(
+'experiments'
+)
+has(name)
+Given a cookie name, return
+true
+if the cookie exists on the request.
+// Returns true if cookie exists, false if it does not
+request
+.
+cookies
+.has
+(
+'experiments'
+)
+clear()
+Remove the
+Set-Cookie
+header from the request.
+request
+.
+cookies
+.clear
+()
+nextUrl
+Extends the native
+URL
+API with additional convenience methods, including Next.js specific properties.
+// Given a request to /home, pathname is /home
+request
+.
+nextUrl
+.pathname
+// Given a request to /home?name=lee, searchParams is { 'name': 'lee' }
+request
+.
+nextUrl
+.searchParams
+The following options are available:
+Property
+Type
+Description
+basePath
+string
+The
+base path
+of the URL.
+buildId
+string
+|
+undefined
+The build identifier of the Next.js application. Can be
+customized
+.
+defaultLocale
+string
+|
+undefined
+The default locale for
+internationalization
+.
+domainLocale
+-
+defaultLocale
+string
+The default locale within a domain.
+-
+domain
+string
+The domain associated with a specific locale.
+-
+http
+boolean
+|
+undefined
+Indicates if the domain is using HTTP.
+locales
+string[]
+|
+undefined
+An array of available locales.
+locale
+string
+|
+undefined
+The currently active locale.
+url
+URL
+The URL object.
+ip
+The
+ip
+property is a string that contains the IP address of the request. This value can optionally be provided by your hosting platform.
+Good to know:
+On
+Vercel
+, this value is provided by default. On other platforms, you can use the
+X-Forwarded-For
+header to provide the IP address.
+// Provided by Vercel
+request
+.ip
+// Self-hosting
+request
+.
+headers
+.get
+(
+'X-Forwarded-For'
+)
+geo
+The
+geo
+property is an object that contains the geographic information of the request. This value can optionally be provided by your hosting platform.
+Good to know:
+On
+Vercel
+, this value is provided by default. On other platforms, you can use the
+X-Forwarded-For
+header to provide the IP address, then use a
+third-party service
+to lookup the geographic information.
+// Provided by Vercel
+request
+.
+geo
+.city
+request
+.
+geo
+.country
+request
+.
+geo
+.region
+request
+.
+geo
+.latitude
+request
+.
+geo
+.longitude
+// Self-hosting
+function
+getGeo
+(request) {
+let
+ip
+=
+request
+.
+headers
+.get
+(
+'X-Forwarded-For'
+)
+// Use a third-party service to lookup the geographic information
+}
+Version History
+Version
+Changes
+v13.0.0
+useSearchParams
+introduced.
+Previous
+getStaticProps
+Next
+NextResponse
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

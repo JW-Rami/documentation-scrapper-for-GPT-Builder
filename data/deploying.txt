@@ -1,0 +1,890 @@
+Building Your Application: Deploying | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Production Builds
+Managed Next.js with Vercel
+Self-Hosting
+Node.js Server
+Docker Image
+Static HTML Export
+Features
+Image Optimization
+Middleware
+Environment Variables
+Caching and ISR
+Automatic Caching
+Static Assets
+Configuring Caching
+Build Cache
+Version Skew
+Manual Graceful Shutdowns
+Edit this page on GitHub
+Scroll to top
+Pages Router
+Building Your Application
+Deploying
+Deploying
+Congratulations, it's time to ship to production.
+You can deploy
+managed Next.js with Vercel
+, or self-host on a Node.js server, Docker image, or even static HTML files. When deploying using
+next start
+, all Next.js features are supported.
+Production Builds
+Running
+next build
+generates an optimized version of your application for production. HTML, CSS, and JavaScript files are created based on your pages. JavaScript is
+compiled
+and browser bundles are
+minified
+using the
+Next.js Compiler
+to help achieve the best performance and support
+all modern browsers
+.
+Next.js produces a standard deployment output used by managed and self-hosted Next.js. This ensures all features are supported across both methods of deployment. In the next major version, we will be transforming this output into our
+Build Output API specification
+.
+Managed Next.js with Vercel
+Vercel
+, the creators and maintainers of Next.js, provide managed infrastructure and a developer experience platform for your Next.js applications.
+Deploying to Vercel is zero-configuration and provides additional enhancements for scalability, availability, and performance globally. However, all Next.js features are still supported when self-hosted.
+Learn more about
+Next.js on Vercel
+or
+deploy a template for free
+to try it out.
+Self-Hosting
+You can self-host Next.js in three different ways:
+A Node.js server
+A Docker container
+A static export
+Node.js Server
+Next.js can be deployed to any hosting provider that supports Node.js. Ensure your
+package.json
+has the
+"build"
+and
+"start"
+scripts:
+package.json
+{
+"scripts"
+:
+{
+"dev"
+:
+"next dev"
+,
+"build"
+:
+"next build"
+,
+"start"
+:
+"next start"
+}
+}
+Then, run
+npm run build
+to build your application. Finally, run
+npm run start
+to start the Node.js server. This server supports all Next.js features.
+Docker Image
+Next.js can be deployed to any hosting provider that supports
+Docker
+containers. You can use this approach when deploying to container orchestrators such as
+Kubernetes
+or when running inside a container in any cloud provider.
+Install Docker
+on your machine
+Clone our example
+(or the
+multi-environment example
+)
+Build your container:
+docker build -t nextjs-docker .
+Run your container:
+docker run -p 3000:3000 nextjs-docker
+Next.js through Docker supports all Next.js features.
+Static HTML Export
+Next.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.
+Since Next.js supports this
+static export
+, it can be deployed and hosted on any web server that can serve HTML/CSS/JS static assets. This includes tools like AWS S3, Nginx, or Apache.
+Running as a
+static export
+does not support Next.js features that require a server.
+Learn more
+.
+Good to know:
+Server Components
+are supported with static exports.
+Features
+Image Optimization
+Image Optimization
+through
+next/image
+works self-hosted with zero configuration when deploying using
+next start
+. If you would prefer to have a separate service to optimize images, you can
+configure an image loader
+.
+Image Optimization can be used with a
+static export
+by defining a custom image loader in
+next.config.js
+. Note that images are optimized at runtime, not during the build.
+Good to know:
+When self-hosting, consider installing
+sharp
+for more performant
+Image Optimization
+in your production environment by running
+npm install sharp
+in your project directory. On Linux platforms,
+sharp
+may require
+additional configuration
+to prevent excessive memory usage.
+Learn more about the
+caching behavior of optimized images
+and how to configure the TTL.
+You can also
+disable Image Optimization
+and still retain other benefits of using
+next/image
+if you prefer. For example, if you are optimizing images yourself separately.
+Middleware
+Middleware
+works self-hosted with zero configuration when deploying using
+next start
+. Since it requires access to the incoming request, it is not supported when using a
+static export
+.
+Middleware uses a
+runtime
+that is a subset of all available Node.js APIs to help ensure low latency, since it may run in front of every route or asset in your application. This runtime does not require running “at the edge” and works in a single-region server. Additional configuration and infrastructure are required to run Middleware in multiple regions.
+If you are looking to add logic (or use an external package) that requires all Node.js APIs, you might be able to move this logic to a
+layout
+as a
+Server Component
+. For example, checking
+headers
+and
+redirecting
+. You can also use headers, cookies, or query parameters to
+redirect
+or
+rewrite
+through
+next.config.js
+. If that does not work, you can also use a
+custom server
+.
+Environment Variables
+Next.js can support both build time and runtime environment variables.
+By default, environment variables are only available on the server
+. To expose an environment variable to the browser, it must be prefixed with
+NEXT_PUBLIC_
+. However, these public environment variables will be inlined into the JavaScript bundle during
+next build
+.
+To read runtime environment variables, we recommend using
+getServerSideProps
+or
+incrementally adopting the App Router
+. With the App Router, we can safely read environment variables on the server during dynamic rendering. This allows you to use a singular Docker image that can be promoted through multiple environments with different values.
+import
+{ unstable_noStore
+as
+noStore }
+from
+'next/cache'
+;
+export
+default
+function
+Component
+() {
+noStore
+();
+// cookies(), headers(), and other dynamic functions
+// will also opt into dynamic rendering, making
+// this env variable is evaluated at runtime
+const
+value
+=
+process
+.
+env
+.
+MY_VALUE
+...
+}
+Good to know:
+You can run code on server startup using the
+register
+function
+.
+We do not recommend using the
+runtimeConfig
+option, as this does not work with the standalone output mode. Instead, we recommend
+incrementally adopting
+the App Router.
+Caching and ISR
+Next.js can cache responses, generated static pages, build outputs, and other static assets like images, fonts, and scripts.
+Caching and revalidating pages (using Incremental Static Regeneration (ISR) or newer functions in the App Router) use the
+same shared cache
+. By default, this cache is stored to the filesystem (on disk) on your Next.js server.
+This works automatically when self-hosting
+using both the Pages and App Router.
+You can configure the Next.js cache location if you want to persist cached pages and data to durable storage, or share the cache across multiple containers or instances of your Next.js application.
+Automatic Caching
+Next.js sets the
+Cache-Control
+header of
+public, max-age=31536000, immutable
+to truly immutable assets. It cannot be overridden. These immutable files contain a SHA-hash in the file name, so they can be safely cached indefinitely. For example,
+Static Image Imports
+. You can
+configure the TTL
+for images.
+Incremental Static Regeneration (ISR) sets the
+Cache-Control
+header of
+s-maxage: <revalidate in getStaticProps>, stale-while-revalidate
+. This revalidation time is defined in your
+getStaticProps
+function
+in seconds. If you set
+revalidate: false
+, it will default to a one-year cache duration.
+Dynamically rendered pages set a
+Cache-Control
+header of
+private, no-cache, no-store, max-age=0, must-revalidate
+to prevent user-specific data from being cached. This applies to both the App Router and Pages Router. This also includes
+Draft Mode
+.
+Static Assets
+If you want to host static assets on a different domain or CDN, you can use the
+assetPrefix
+configuration
+in
+next.config.js
+. Next.js will use this asset prefix when retrieving JavaScript or CSS files. Separating your assets to a different domain does come with the downside of extra time spent on DNS and TLS resolution.
+Learn more about
+assetPrefix
+.
+Configuring Caching
+By default, generated cache assets will be stored in memory (defaults to 50mb) and on disk. If you are hosting Next.js using a container orchestration platform like Kubernetes, each pod will have a copy of the cache. To prevent stale data from being shown since the cache is not shared between pods by default, you can configure the Next.js cache to provide a cache handler and disable in-memory caching.
+To configure the ISR/Data Cache location when self-hosting, you can configure a custom handler in your
+next.config.js
+file:
+next.config.js
+module
+.
+exports
+=
+{
+experimental
+:
+{
+incrementalCacheHandlerPath
+:
+require
+.resolve
+(
+'./cache-handler.js'
+)
+,
+isrMemoryCacheSize
+:
+0
+,
+// disable default in-memory caching
+}
+,
+}
+Then, create
+cache-handler.js
+in the root of your project, for example:
+cache-handler.js
+const
+cache
+=
+new
+Map
+()
+module
+.
+exports
+=
+class
+CacheHandler
+{
+constructor
+(options) {
+this
+.options
+=
+options
+}
+async
+get
+(key) {
+// This could be stored anywhere, like durable storage
+return
+cache
+.get
+(key)
+}
+async
+set
+(key
+,
+data
+,
+ctx) {
+// This could be stored anywhere, like durable storage
+cache
+.set
+(key
+,
+{
+value
+:
+data
+,
+lastModified
+:
+Date
+.now
+()
+,
+tags
+:
+ctx
+.tags
+,
+})
+}
+async
+revalidateTag
+(tag) {
+// Iterate over all entries in the cache
+for
+(
+let
+[key
+,
+value]
+of
+cache) {
+// If the value's tags include the specified tag, delete this entry
+if
+(
+value
+.
+tags
+.includes
+(tag)) {
+cache
+.delete
+(key)
+}
+}
+}
+}
+Using a custom cache handler will allow you to ensure consistency across all pods hosting your Next.js application. For instance, you can save the cached values anywhere, like
+Redis
+or AWS S3.
+Good to know:
+revalidatePath
+is a convenience layer on top of cache tags. Calling
+revalidatePath
+will call the
+revalidateTag
+function with a special default tag for the provided page.
+Build Cache
+Next.js generates an ID during
+next build
+to identify which version of your application is being served. The same build should be used and boot up multiple containers.
+If you are rebuilding for each stage of your environment, you will need to generate a consistent build ID to use between containers. Use the
+generateBuildId
+command in
+next.config.js
+:
+next.config.js
+module
+.
+exports
+=
+{
+generateBuildId
+:
+async
+()
+=>
+{
+// This could be anything, using the latest git hash
+return
+process
+.
+env
+.
+GIT_HASH
+}
+,
+}
+Version Skew
+Next.js will automatically mitigate most instances of
+version skew
+and automatically reload the application to retrieve new assets when detected. For example, if there is a mismatch in the build ID, transitions between pages will perform a hard navigation versus using a prefetched value.
+When the application is reloaded, there may be a loss of application state if it's not designed to persist between page navigations. For example, using URL state or local storage would persist state after a page refresh. However, component state like
+useState
+would be lost in such navigations.
+Vercel provides additional
+skew protection
+for Next.js applications to ensure assets and functions from the previous build are still available while the new build is being deployed.
+Manual Graceful Shutdowns
+When self-hosting, you might want to run code when the server shuts down on
+SIGTERM
+or
+SIGINT
+signals.
+You can set the env variable
+NEXT_MANUAL_SIG_HANDLE
+to
+true
+and then register a handler for that signal inside your
+_document.js
+file. You will need to register the environment variable directly in the
+package.json
+script, and not in the
+.env
+file.
+Good to know
+: Manual signal handling is not available in
+next dev
+.
+package.json
+{
+"scripts"
+:
+{
+"dev"
+:
+"next dev"
+,
+"build"
+:
+"next build"
+,
+"start"
+:
+"NEXT_MANUAL_SIG_HANDLE=true next start"
+}
+}
+pages/_document.js
+if
+(
+process
+.
+env
+.
+NEXT_MANUAL_SIG_HANDLE
+) {
+process
+.on
+(
+'SIGTERM'
+,
+()
+=>
+{
+console
+.log
+(
+'Received SIGTERM: cleaning up'
+)
+process
+.exit
+(
+0
+)
+})
+process
+.on
+(
+'SIGINT'
+,
+()
+=>
+{
+console
+.log
+(
+'Received SIGINT: cleaning up'
+)
+process
+.exit
+(
+0
+)
+})
+}
+Going to Production
+Before taking your Next.js application to production, here are some recommendations to ensure the best user experience.
+Static Exports
+Next.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.
+Multi Zones
+Learn how to use multi zones to deploy multiple Next.js apps as a single app.
+Continuous Integration (CI) Build Caching
+Learn how to configure CI to cache Next.js builds
+Previous
+Cypress
+Next
+Going to Production
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

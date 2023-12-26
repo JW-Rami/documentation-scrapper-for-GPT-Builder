@@ -1,0 +1,549 @@
+Testing: Playwright | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Quickstart
+Manual setup
+Creating your first Playwright E2E test
+Running your Playwright tests
+Running Playwright on Continuous Integration (CI)
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Testing
+Playwright
+Setting up Playwright with Next.js
+Playwright is a testing framework that lets you automate Chromium, Firefox, and WebKit with a single API. You can use it to write
+End-to-End (E2E)
+testing. This guide will show you how to set up Playwright with Next.js and write your first tests.
+Quickstart
+The fastest way to get started is to use
+create-next-app
+with the
+with-playwright example
+. This will create a Next.js project complete with Playwright configured.
+Terminal
+npx
+create-next-app@latest
+--example
+with-playwright
+with-playwright-app
+Manual setup
+To install Playwright, run the following command:
+Terminal
+npm
+init
+playwright
+# or
+yarn
+create
+playwright
+# or
+pnpm
+create
+playwright
+This will take you through a series of prompts to setup and configure Playwright for your project, including adding a
+playwright.config.ts
+file. Please refer to the
+Playwright installation guide
+for the step-by-step guide.
+Creating your first Playwright E2E test
+Create two new Next.js pages:
+pages/index.ts
+import
+Link
+from
+'next/link'
+export
+default
+function
+Home
+() {
+return
+(
+<
+div
+>
+<
+h1
+>Home</
+h1
+>
+<
+Link
+href
+=
+"/about"
+>About</
+Link
+>
+</
+div
+>
+)
+}
+pages/about.ts
+import
+Link
+from
+'next/link'
+export
+default
+function
+About
+() {
+return
+(
+<
+div
+>
+<
+h1
+>About</
+h1
+>
+<
+Link
+href
+=
+"/"
+>Home</
+Link
+>
+</
+div
+>
+)
+}
+Then, add a test to verify that your navigation is working correctly:
+tests/example.spec.ts
+import
+{ test
+,
+expect }
+from
+'@playwright/test'
+test
+(
+'should navigate to the about page'
+,
+async
+({ page })
+=>
+{
+// Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
+await
+page
+.goto
+(
+'http://localhost:3000/'
+)
+// Find an element with the text 'About' and click on it
+await
+page
+.click
+(
+'text=About'
+)
+// The new URL should be "/about" (baseURL is used there)
+await
+expect
+(page)
+.toHaveURL
+(
+'http://localhost:3000/about'
+)
+// The new page should contain an h1 with "About"
+await
+expect
+(
+page
+.locator
+(
+'h1'
+))
+.toContainText
+(
+'About'
+)
+})
+Good to know
+:
+You can use
+page.goto("/")
+instead of
+page.goto("http://localhost:3000/")
+, if you add
+"baseURL": "http://localhost:3000"
+to the
+playwright.config.ts
+configuration file
+.
+Running your Playwright tests
+Playwright will simulate a user navigating your application using three browsers: Chromium, Firefox and Webkit, this requires your Next.js server to be running. We recommend running your tests against your production code to more closely resemble how your application will behave.
+Run
+npm run build
+and
+npm run start
+, then run
+npx playwright test
+in another terminal window to run the Playwright tests.
+Good to know
+: Alternatively, you can use the
+webServer
+feature to let Playwright start the development server and wait until it's fully available.
+Running Playwright on Continuous Integration (CI)
+Playwright will by default run your tests in the
+headless mode
+. To install all the Playwright dependencies, run
+npx playwright install-deps
+.
+You can learn more about Playwright and Continuous Integration from these resources:
+Next.js with Playwright example
+Playwright on your CI provider
+Playwright Discord
+Previous
+Jest
+Next
+Cypress
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

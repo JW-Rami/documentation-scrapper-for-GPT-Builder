@@ -1,0 +1,1499 @@
+Routing: Route Handlers | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Convention
+Supported HTTP Methods
+Extended NextRequest and NextResponse APIs
+Behavior
+Caching
+Opting out of caching
+Route Resolution
+Examples
+Revalidating Cached Data
+Dynamic Functions
+Cookies
+Headers
+Redirects
+Dynamic Route Segments
+URL Query Parameters
+Streaming
+Request Body
+Request Body FormData
+CORS
+Edge and Node.js Runtimes
+Non-UI Responses
+Segment Config Options
+API Reference
+Edit this page on GitHub
+Scroll to top
+App Router
+...
+Routing
+Route Handlers
+Route Handlers
+Route Handlers allow you to create custom request handlers for a given route using the Web
+Request
+and
+Response
+APIs.
+Good to know
+: Route Handlers are only available inside the
+app
+directory. They are the equivalent of
+API Routes
+inside the
+pages
+directory meaning you
+do not
+need to use API Routes and Route Handlers together.
+Convention
+Route Handlers are defined in a
+route.js|ts
+file
+inside the
+app
+directory:
+app/api/route.ts
+export
+const
+dynamic
+=
+'force-dynamic'
+// defaults to auto
+export
+async
+function
+GET
+(request
+:
+Request
+) {}
+Route Handlers can be nested inside the
+app
+directory, similar to
+page.js
+and
+layout.js
+. But there
+cannot
+be a
+route.js
+file at the same route segment level as
+page.js
+.
+Supported HTTP Methods
+The following
+HTTP methods
+are supported:
+GET
+,
+POST
+,
+PUT
+,
+PATCH
+,
+DELETE
+,
+HEAD
+, and
+OPTIONS
+. If an unsupported method is called, Next.js will return a
+405 Method Not Allowed
+response.
+Extended
+NextRequest
+and
+NextResponse
+APIs
+In addition to supporting native
+Request
+and
+Response
+. Next.js extends them with
+NextRequest
+and
+NextResponse
+to provide convenient helpers for advanced use cases.
+Behavior
+Caching
+Route Handlers are cached by default when using the
+GET
+method with the
+Response
+object.
+app/items/route.ts
+export
+async
+function
+GET
+() {
+const
+res
+=
+await
+fetch
+(
+'https://data.mongodb-api.com/...'
+,
+{
+headers
+:
+{
+'Content-Type'
+:
+'application/json'
+,
+'API-Key'
+:
+process
+.
+env
+.
+DATA_API_KEY
+,
+}
+,
+})
+const
+data
+=
+await
+res
+.json
+()
+return
+Response
+.json
+({ data })
+}
+TypeScript Warning:
+Response.json()
+is only valid from TypeScript 5.2. If you use a lower TypeScript version, you can use
+NextResponse.json()
+for typed responses instead.
+Opting out of caching
+You can opt out of caching by:
+Using the
+Request
+object with the
+GET
+method.
+Using any of the other HTTP methods.
+Using
+Dynamic Functions
+like
+cookies
+and
+headers
+.
+The
+Segment Config Options
+manually specifies dynamic mode.
+For example:
+app/products/api/route.ts
+export
+async
+function
+GET
+(request
+:
+Request
+) {
+const
+{
+searchParams
+}
+=
+new
+URL
+(
+request
+.url)
+const
+id
+=
+searchParams
+.get
+(
+'id'
+)
+const
+res
+=
+await
+fetch
+(
+`https://data.mongodb-api.com/product/
+${
+id
+}
+`
+,
+{
+headers
+:
+{
+'Content-Type'
+:
+'application/json'
+,
+'API-Key'
+:
+process
+.
+env
+.
+DATA_API_KEY
+!
+,
+}
+,
+})
+const
+product
+=
+await
+res
+.json
+()
+return
+Response
+.json
+({ product })
+}
+Similarly, the
+POST
+method will cause the Route Handler to be evaluated dynamically.
+app/items/route.ts
+export
+async
+function
+POST
+() {
+const
+res
+=
+await
+fetch
+(
+'https://data.mongodb-api.com/...'
+,
+{
+method
+:
+'POST'
+,
+headers
+:
+{
+'Content-Type'
+:
+'application/json'
+,
+'API-Key'
+:
+process
+.
+env
+.
+DATA_API_KEY
+!
+,
+}
+,
+body
+:
+JSON
+.stringify
+({ time
+:
+new
+Date
+()
+.toISOString
+() })
+,
+})
+const
+data
+=
+await
+res
+.json
+()
+return
+Response
+.json
+(data)
+}
+Good to know
+: Like API Routes, Route Handlers can be used for cases like handling form submissions. A new abstraction for
+handling forms and mutations
+that integrates deeply with React is being worked on.
+Route Resolution
+You can consider a
+route
+the lowest level routing primitive.
+They
+do not
+participate in layouts or client-side navigations like
+page
+.
+There
+cannot
+be a
+route.js
+file at the same route as
+page.js
+.
+Page
+Route
+Result
+app/page.js
+app/route.js
+Conflict
+app/page.js
+app/api/route.js
+Valid
+app/[user]/page.js
+app/api/route.js
+Valid
+Each
+route.js
+or
+page.js
+file takes over all HTTP verbs for that route.
+app/page.js
+export
+default
+function
+Page
+() {
+return
+<
+h1
+>Hello, Next.js!</
+h1
+>
+}
+// ❌ Conflict
+// `app/route.js`
+export
+async
+function
+POST
+(request) {}
+Examples
+The following examples show how to combine Route Handlers with other Next.js APIs and features.
+Revalidating Cached Data
+You can
+revalidate cached data
+using the
+next.revalidate
+option:
+app/items/route.ts
+export
+async
+function
+GET
+() {
+const
+res
+=
+await
+fetch
+(
+'https://data.mongodb-api.com/...'
+,
+{
+next
+:
+{ revalidate
+:
+60
+}
+,
+// Revalidate every 60 seconds
+})
+const
+data
+=
+await
+res
+.json
+()
+return
+Response
+.json
+(data)
+}
+Alternatively, you can use the
+revalidate
+segment config option
+:
+export
+const
+revalidate
+=
+60
+Dynamic Functions
+Route Handlers can be used with dynamic functions from Next.js, like
+cookies
+and
+headers
+.
+Cookies
+You can read cookies with
+cookies
+from
+next/headers
+. This server function can be called directly in a Route Handler, or nested inside of another function.
+This
+cookies
+instance is read-only. To set cookies, you need to return a new
+Response
+using the
+Set-Cookie
+header.
+app/api/route.ts
+import
+{ cookies }
+from
+'next/headers'
+export
+async
+function
+GET
+(request
+:
+Request
+) {
+const
+cookieStore
+=
+cookies
+()
+const
+token
+=
+cookieStore
+.get
+(
+'token'
+)
+return
+new
+Response
+(
+'Hello, Next.js!'
+,
+{
+status
+:
+200
+,
+headers
+:
+{
+'Set-Cookie'
+:
+`token=
+${
+token
+.value
+}
+`
+}
+,
+})
+}
+Alternatively, you can use abstractions on top of the underlying Web APIs to read cookies (
+NextRequest
+):
+app/api/route.ts
+import
+{
+type
+NextRequest }
+from
+'next/server'
+export
+async
+function
+GET
+(request
+:
+NextRequest
+) {
+const
+token
+=
+request
+.
+cookies
+.get
+(
+'token'
+)
+}
+Headers
+You can read headers with
+headers
+from
+next/headers
+. This server function can be called directly in a Route Handler, or nested inside of another function.
+This
+headers
+instance is read-only. To set headers, you need to return a new
+Response
+with new
+headers
+.
+app/api/route.ts
+import
+{ headers }
+from
+'next/headers'
+export
+async
+function
+GET
+(request
+:
+Request
+) {
+const
+headersList
+=
+headers
+()
+const
+referer
+=
+headersList
+.get
+(
+'referer'
+)
+return
+new
+Response
+(
+'Hello, Next.js!'
+,
+{
+status
+:
+200
+,
+headers
+:
+{ referer
+:
+referer }
+,
+})
+}
+Alternatively, you can use abstractions on top of the underlying Web APIs to read headers (
+NextRequest
+):
+app/api/route.ts
+import
+{
+type
+NextRequest }
+from
+'next/server'
+export
+async
+function
+GET
+(request
+:
+NextRequest
+) {
+const
+requestHeaders
+=
+new
+Headers
+(
+request
+.headers)
+}
+Redirects
+app/api/route.ts
+import
+{ redirect }
+from
+'next/navigation'
+export
+async
+function
+GET
+(request
+:
+Request
+) {
+redirect
+(
+'https://nextjs.org/'
+)
+}
+Dynamic Route Segments
+We recommend reading the
+Defining Routes
+page before continuing.
+Route Handlers can use
+Dynamic Segments
+to create request handlers from dynamic data.
+app/items/[slug]/route.ts
+export
+async
+function
+GET
+(
+request
+:
+Request
+,
+{ params }
+:
+{ params
+:
+{ slug
+:
+string
+} }
+) {
+const
+slug
+=
+params
+.slug
+// 'a', 'b', or 'c'
+}
+Route
+Example URL
+params
+app/items/[slug]/route.js
+/items/a
+{ slug: 'a' }
+app/items/[slug]/route.js
+/items/b
+{ slug: 'b' }
+app/items/[slug]/route.js
+/items/c
+{ slug: 'c' }
+URL Query Parameters
+The request object passed to the Route Handler is a
+NextRequest
+instance, which has
+some additional convenience methods
+, including for more easily handling query parameters.
+app/api/search/route.ts
+import
+{
+type
+NextRequest }
+from
+'next/server'
+export
+function
+GET
+(request
+:
+NextRequest
+) {
+const
+searchParams
+=
+request
+.
+nextUrl
+.searchParams
+const
+query
+=
+searchParams
+.get
+(
+'query'
+)
+// query is "hello" for /
+api
+/search?query=hello
+}
+Streaming
+Streaming is commonly used in combination with Large Language Models (LLMs), such as OpenAI, for AI-generated content. Learn more about the
+AI SDK
+.
+app/api/chat/route.ts
+import
+OpenAI
+from
+'openai'
+import
+{ OpenAIStream
+,
+StreamingTextResponse }
+from
+'ai'
+const
+openai
+=
+new
+OpenAI
+({
+api
+Key
+:
+process
+.
+env
+.
+OPENAI_API_KEY
+,
+})
+export
+const
+runtime
+=
+'edge'
+export
+async
+function
+POST
+(req
+:
+Request
+) {
+const
+{
+messages
+}
+=
+await
+req
+.json
+()
+const
+response
+=
+await
+openai
+.
+chat
+.
+completions
+.create
+({
+model
+:
+'gpt-3.5-turbo'
+,
+stream
+:
+true
+,
+messages
+,
+})
+const
+stream
+=
+OpenAIStream
+(response)
+return
+new
+StreamingTextResponse
+(stream)
+}
+These abstractions use the Web APIs to create a stream. You can also use the underlying Web APIs directly.
+app/api/route.ts
+// https://developer.mozilla.org/docs/Web/API/ReadableStream#convert_async_iterator_to_stream
+function
+iteratorToStream
+(iterator
+:
+any
+) {
+return
+new
+ReadableStream
+({
+async
+pull
+(controller) {
+const
+{
+value
+,
+done
+}
+=
+await
+iterator
+.next
+()
+if
+(done) {
+controller
+.close
+()
+}
+else
+{
+controller
+.enqueue
+(value)
+}
+}
+,
+})
+}
+function
+sleep
+(time
+:
+number
+) {
+return
+new
+Promise
+((resolve)
+=>
+{
+setTimeout
+(resolve
+,
+time)
+})
+}
+const
+encoder
+=
+new
+TextEncoder
+()
+async
+function*
+makeIterator
+() {
+yield
+encoder
+.encode
+(
+'<p>One</p>'
+)
+await
+sleep
+(
+200
+)
+yield
+encoder
+.encode
+(
+'<p>Two</p>'
+)
+await
+sleep
+(
+200
+)
+yield
+encoder
+.encode
+(
+'<p>Three</p>'
+)
+}
+export
+async
+function
+GET
+() {
+const
+iterator
+=
+makeIterator
+()
+const
+stream
+=
+iteratorToStream
+(iterator)
+return
+new
+Response
+(stream)
+}
+Request Body
+You can read the
+Request
+body using the standard Web API methods:
+app/items/route.ts
+export
+async
+function
+POST
+(request
+:
+Request
+) {
+const
+res
+=
+await
+request
+.json
+()
+return
+Response
+.json
+({ res })
+}
+Request Body FormData
+You can read the
+FormData
+using the
+request.formData()
+function:
+app/items/route.ts
+export
+async
+function
+POST
+(request
+:
+Request
+) {
+const
+formData
+=
+await
+request
+.formData
+()
+const
+name
+=
+formData
+.get
+(
+'name'
+)
+const
+email
+=
+formData
+.get
+(
+'email'
+)
+return
+Response
+.json
+({ name
+,
+email })
+}
+Since
+formData
+data are all strings, you may want to use
+zod-form-data
+to validate the request and retrieve data in the format you prefer (e.g.
+number
+).
+CORS
+You can set CORS headers on a
+Response
+using the standard Web API methods:
+app/api/route.ts
+export
+const
+dynamic
+=
+'force-dynamic'
+// defaults to auto
+export
+async
+function
+GET
+(request
+:
+Request
+) {
+return
+new
+Response
+(
+'Hello, Next.js!'
+,
+{
+status
+:
+200
+,
+headers
+:
+{
+'Access-Control-Allow-Origin'
+:
+'*'
+,
+'Access-Control-Allow-Methods'
+:
+'GET, POST, PUT, DELETE, OPTIONS'
+,
+'Access-Control-Allow-Headers'
+:
+'Content-Type, Authorization'
+,
+}
+,
+})
+}
+Edge and Node.js Runtimes
+Route Handlers have an isomorphic Web API to support both Edge and Node.js runtimes seamlessly, including support for streaming. Since Route Handlers use the same
+route segment configuration
+as Pages and Layouts, they support long-awaited features like general-purpose
+statically regenerated
+Route Handlers.
+You can use the
+runtime
+segment config option to specify the runtime:
+export
+const
+runtime
+=
+'edge'
+// 'nodejs' is the default
+Non-UI Responses
+You can use Route Handlers to return non-UI content. Note that
+sitemap.xml
+,
+robots.txt
+,
+app icons
+, and
+open graph images
+all have built-in support.
+app/rss.xml/route.ts
+export
+const
+dynamic
+=
+'force-dynamic'
+// defaults to auto
+export
+async
+function
+GET
+() {
+return
+new
+Response
+(
+`<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+<title>Next.js Documentation</title>
+<link>https://nextjs.org/docs</link>
+<description>The React Framework for the Web</description>
+</channel>
+</rss>`
+)
+}
+Segment Config Options
+Route Handlers use the same
+route segment configuration
+as pages and layouts.
+app/items/route.ts
+export
+const
+dynamic
+=
+'auto'
+export
+const
+dynamicParams
+=
+true
+export
+const
+revalidate
+=
+false
+export
+const
+fetchCache
+=
+'auto'
+export
+const
+runtime
+=
+'nodejs'
+export
+const
+preferredRegion
+=
+'auto'
+See the
+API reference
+for more details.
+API Reference
+Learn more about the route.js file.
+App Router
+...
+File Conventions
+route.js
+API reference for the route.js special file.
+Previous
+Intercepting Routes
+Next
+Middleware
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

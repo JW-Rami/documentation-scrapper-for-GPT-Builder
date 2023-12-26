@@ -1,0 +1,709 @@
+Functions: generateImageMetadata | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Parameters
+params (optional)
+Returns
+Examples
+Using external data
+Version History
+Next Steps
+Edit this page on GitHub
+Scroll to top
+App Router
+...
+Functions
+generateImageMetadata
+generateImageMetadata
+You can use
+generateImageMetadata
+to generate different versions of one image or return multiple images for one route segment. This is useful for when you want to avoid hard-coding metadata values, such as for icons.
+Parameters
+generateImageMetadata
+function accepts the following parameters:
+params
+(optional)
+An object containing the
+dynamic route parameters
+object from the root segment down to the segment
+generateImageMetadata
+is called from.
+icon.tsx
+export
+function
+generateImageMetadata
+({
+params
+,
+}
+:
+{
+params
+:
+{ slug
+:
+string
+}
+}) {
+// ...
+}
+Route
+URL
+params
+app/shop/icon.js
+/shop
+undefined
+app/shop/[slug]/icon.js
+/shop/1
+{ slug: '1' }
+app/shop/[tag]/[item]/icon.js
+/shop/1/2
+{ tag: '1', item: '2' }
+app/shop/[...slug]/icon.js
+/shop/1/2
+{ slug: ['1', '2'] }
+Returns
+The
+generateImageMetadata
+function should return an
+array
+of objects containing the image's metadata such as
+alt
+and
+size
+. In addition, each item
+must
+include an
+id
+value which will be passed to the props of the image generating function.
+Image Metadata Object
+Type
+id
+string
+(required)
+alt
+string
+size
+{ width: number; height: number }
+contentType
+string
+icon.tsx
+import
+{ ImageResponse }
+from
+'next/og'
+export
+function
+generateImageMetadata
+() {
+return
+[
+{
+contentType
+:
+'image/png'
+,
+size
+:
+{ width
+:
+48
+,
+height
+:
+48
+}
+,
+id
+:
+'small'
+,
+}
+,
+{
+contentType
+:
+'image/png'
+,
+size
+:
+{ width
+:
+72
+,
+height
+:
+72
+}
+,
+id
+:
+'medium'
+,
+}
+,
+]
+}
+export
+default
+function
+Icon
+({ id }
+:
+{ id
+:
+string
+}) {
+return
+new
+ImageResponse
+(
+(
+<
+div
+style
+=
+{{
+width
+:
+'100%'
+,
+height
+:
+'100%'
+,
+display
+:
+'flex'
+,
+alignItems
+:
+'center'
+,
+justifyContent
+:
+'center'
+,
+fontSize
+:
+88
+,
+background
+:
+'#000'
+,
+color
+:
+'#fafafa'
+,
+}}
+>
+Icon {id}
+</
+div
+>
+)
+)
+}
+Examples
+Using external data
+This example uses the
+params
+object and external data to generate multiple
+Open Graph images
+for a route segment.
+app/products/[id]/opengraph-image.tsx
+import
+{ ImageResponse }
+from
+'next/og'
+import
+{ getCaptionForImage
+,
+getOGImages }
+from
+'@/app/utils/images'
+export
+async
+function
+generateImageMetadata
+({
+params
+,
+}
+:
+{
+params
+:
+{ id
+:
+string
+}
+}) {
+const
+images
+=
+await
+getOGImages
+(
+params
+.id)
+return
+images
+.map
+((image
+,
+idx)
+=>
+({
+id
+:
+idx
+,
+size
+:
+{ width
+:
+1200
+,
+height
+:
+600
+}
+,
+alt
+:
+image
+.text
+,
+contentType
+:
+'image/png'
+,
+}))
+}
+export
+default
+async
+function
+Image
+({
+params
+,
+id
+,
+}
+:
+{
+params
+:
+{ id
+:
+string
+}
+id
+:
+number
+}) {
+const
+productId
+=
+params
+.id
+const
+imageId
+=
+id
+const
+text
+=
+await
+getCaptionForImage
+(productId
+,
+imageId)
+return
+new
+ImageResponse
+(
+(
+<
+div
+style
+=
+{
+{
+// ...
+}
+}
+>
+{text}
+</
+div
+>
+)
+)
+}
+Version History
+Version
+Changes
+v13.3.0
+generateImageMetadata
+introduced.
+Next Steps
+View all the Metadata API options.
+App Router
+...
+File Conventions
+Metadata Files
+API documentation for the metadata file conventions.
+App Router
+...
+Optimizing
+Metadata
+Use the Metadata API to define metadata in any layout or page.
+Previous
+fetch
+Next
+generateMetadata
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

@@ -1,0 +1,920 @@
+Functions: generateStaticParams | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Parameters
+Returns
+Single Dynamic Segment
+Multiple Dynamic Segments
+Catch-all Dynamic Segment
+Examples
+Multiple Dynamic Segments in a Route
+Generate params from the bottom up
+Generate params from the top down
+Version History
+Edit this page on GitHub
+Scroll to top
+App Router
+...
+Functions
+generateStaticParams
+generateStaticParams
+The
+generateStaticParams
+function can be used in combination with
+dynamic route segments
+to
+statically generate
+routes at build time instead of on-demand at request time.
+app/blog/[slug]/page.js
+// Return a list of `params` to populate the [slug] dynamic segment
+export
+async
+function
+generateStaticParams
+() {
+const
+posts
+=
+await
+fetch
+(
+'https://.../posts'
+)
+.then
+((res)
+=>
+res
+.json
+())
+return
+posts
+.map
+((post)
+=>
+({
+slug
+:
+post
+.slug
+,
+}))
+}
+// Multiple versions of this page will be statically generated
+// using the `params` returned by `generateStaticParams`
+export
+default
+function
+Page
+({ params }) {
+const
+{
+slug
+}
+=
+params
+// ...
+}
+Good to know
+You can use the
+dynamicParams
+segment config option to control what happens when a dynamic segment is visited that was not generated with
+generateStaticParams
+.
+During
+next dev
+,
+generateStaticParams
+will be called when you navigate to a route.
+During
+next build
+,
+generateStaticParams
+runs before the corresponding Layouts or Pages are generated.
+During revalidation (ISR),
+generateStaticParams
+will not be called again.
+generateStaticParams
+replaces the
+getStaticPaths
+function in the Pages Router.
+Parameters
+options.params
+(optional)
+If multiple dynamic segments in a route use
+generateStaticParams
+, the child
+generateStaticParams
+function is executed once for each set of
+params
+the parent generates.
+The
+params
+object contains the populated
+params
+from the parent
+generateStaticParams
+, which can be used to
+generate the
+params
+in a child segment
+.
+Returns
+generateStaticParams
+should return an array of objects where each object represents the populated dynamic segments of a single route.
+Each property in the object is a dynamic segment to be filled in for the route.
+The properties name is the segment's name, and the properties value is what that segment should be filled in with.
+Example Route
+generateStaticParams
+Return Type
+/product/[id]
+{ id: string }[]
+/products/[category]/[product]
+{ category: string, product: string }[]
+/products/[...slug]
+{ slug: string[] }[]
+Single Dynamic Segment
+app/product/[id]/page.tsx
+export
+function
+generateStaticParams
+() {
+return
+[{ id
+:
+'1'
+}
+,
+{ id
+:
+'2'
+}
+,
+{ id
+:
+'3'
+}]
+}
+// Three versions of this page will be statically generated
+// using the `params` returned by `generateStaticParams`
+// - /
+product
+/1
+// - /
+product
+/2
+// - /
+product
+/3
+export
+default
+function
+Page
+({ params }
+:
+{ params
+:
+{ id
+:
+string
+} }) {
+const
+{
+id
+}
+=
+params
+// ...
+}
+Multiple Dynamic Segments
+app/products/[category]/[product]/page.tsx
+export
+function
+generateStaticParams
+() {
+return
+[
+{ category
+:
+'a'
+,
+product
+:
+'1'
+}
+,
+{ category
+:
+'b'
+,
+product
+:
+'2'
+}
+,
+{ category
+:
+'c'
+,
+product
+:
+'3'
+}
+,
+]
+}
+// Three versions of this page will be statically generated
+// using the `params` returned by `generateStaticParams`
+// - /
+products
+/a/1
+// - /
+products
+/b/2
+// - /
+products
+/c/3
+export
+default
+function
+Page
+({
+params
+,
+}
+:
+{
+params
+:
+{ category
+:
+string
+; product
+:
+string
+}
+}) {
+const
+{
+category
+,
+product
+}
+=
+params
+// ...
+}
+Catch-all Dynamic Segment
+app/product/[...slug]/page.tsx
+export
+function
+generateStaticParams
+() {
+return
+[{ slug
+:
+[
+'a'
+,
+'1'
+] }
+,
+{ slug
+:
+[
+'b'
+,
+'2'
+] }
+,
+{ slug
+:
+[
+'c'
+,
+'3'
+] }]
+}
+// Three versions of this page will be statically generated
+// using the `params` returned by `generateStaticParams`
+// - /
+product
+/a/1
+// - /
+product
+/b/2
+// - /
+product
+/c/3
+export
+default
+function
+Page
+({ params }
+:
+{ params
+:
+{ slug
+:
+string
+[] } }) {
+const
+{
+slug
+}
+=
+params
+// ...
+}
+Examples
+Multiple Dynamic Segments in a Route
+You can generate params for dynamic segments above the current layout or page, but
+not below
+. For example, given the
+app/products/[category]/[product]
+route:
+app/products/[category]/[product]/page.js
+can generate params for
+both
+[category]
+and
+[product]
+.
+app/products/[category]/layout.js
+can
+only
+generate params for
+[category]
+.
+There are two approaches to generating params for a route with multiple dynamic segments:
+Generate params from the bottom up
+Generate multiple dynamic segments from the child route segment.
+app/products/[category]/[product]/page.tsx
+// Generate segments for both [category] and [product]
+export
+async
+function
+generateStaticParams
+() {
+const
+products
+=
+await
+fetch
+(
+'https://.../
+products
+'
+)
+.then
+((res)
+=>
+res
+.json
+())
+return
+products
+.map
+((product)
+=>
+({
+category
+:
+product
+.
+category
+.slug
+,
+product
+:
+product
+.id
+,
+}))
+}
+export
+default
+function
+Page
+({
+params
+,
+}
+:
+{
+params
+:
+{ category
+:
+string
+; product
+:
+string
+}
+}) {
+// ...
+}
+Generate params from the top down
+Generate the parent segments first and use the result to generate the child segments.
+app/products/[category]/layout.tsx
+// Generate segments for [category]
+export
+async
+function
+generateStaticParams
+() {
+const
+products
+=
+await
+fetch
+(
+'https://.../
+products
+'
+)
+.then
+((res)
+=>
+res
+.json
+())
+return
+products
+.map
+((product)
+=>
+({
+category
+:
+product
+.
+category
+.slug
+,
+}))
+}
+export
+default
+function
+Layout
+({ params }
+:
+{ params
+:
+{ category
+:
+string
+} }) {
+// ...
+}
+A child route segment's
+generateStaticParams
+function is executed once for each segment a parent
+generateStaticParams
+generates.
+The child
+generateStaticParams
+function can use the
+params
+returned from the parent
+generateStaticParams
+function to dynamically generate its own segments.
+app/products/[category]/[product]/page.tsx
+// Generate segments for [product] using the `params` passed from
+// the parent segment's `generateStaticParams` function
+export
+async
+function
+generateStaticParams
+({
+params: { category }
+,
+}
+:
+{
+params
+:
+{ category
+:
+string
+}
+}) {
+const
+products
+=
+await
+fetch
+(
+`https://.../
+products
+?category=
+${
+category
+}
+`
+)
+.then
+((res)
+=>
+res
+.json
+())
+return
+products
+.map
+((product)
+=>
+({
+product
+:
+product
+.id
+,
+}))
+}
+export
+default
+function
+Page
+({
+params
+,
+}
+:
+{
+params
+:
+{ category
+:
+string
+; product
+:
+string
+}
+}) {
+// ...
+}
+Good to know
+:
+fetch
+requests are automatically
+memoized
+for the same data across all
+generate
+-prefixed functions, Layouts, Pages, and Server Components. React
+cache
+can be used
+if
+fetch
+is unavailable.
+Version History
+Version
+Changes
+v13.0.0
+generateStaticParams
+introduced.
+Previous
+generateSitemaps
+Next
+generateViewport
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

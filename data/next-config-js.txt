@@ -1,0 +1,552 @@
+API Reference: next.config.js Options | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+Edit this page on GitHub
+Scroll to top
+Pages Router
+API Reference
+next.config.js Options
+next.config.js Options
+Next.js can be configured through a
+next.config.js
+file in the root of your project directory (for example, by
+package.json
+).
+next.config.js
+/**
+@type
+{import('next').NextConfig}
+*/
+const
+nextConfig
+=
+{
+/* config options here */
+}
+module
+.
+exports
+=
+nextConfig
+next.config.js
+is a regular Node.js module, not a JSON file. It gets used by the Next.js server and build phases, and it's not included in the browser build.
+If you need
+ECMAScript modules
+, you can use
+next.config.mjs
+:
+next.config.mjs
+/**
+*
+@type
+{import('next').NextConfig}
+*/
+const
+nextConfig
+=
+{
+/* config options here */
+}
+export
+default
+nextConfig
+You can also use a function:
+next.config.mjs
+export
+default
+(phase
+,
+{ defaultConfig })
+=>
+{
+/**
+*
+@type
+{import('next').NextConfig}
+*/
+const
+nextConfig
+=
+{
+/* config options here */
+}
+return
+nextConfig
+}
+Since Next.js 12.1.0, you can use an async function:
+next.config.js
+module
+.
+exports
+=
+async
+(phase
+,
+{ defaultConfig })
+=>
+{
+/**
+*
+@type
+{import('next').NextConfig}
+*/
+const
+nextConfig
+=
+{
+/* config options here */
+}
+return
+nextConfig
+}
+phase
+is the current context in which the configuration is loaded. You can see the
+available phases
+. Phases can be imported from
+next/constants
+:
+const
+{
+PHASE_DEVELOPMENT_SERVER
+}
+=
+require
+(
+'next/constants'
+)
+module
+.
+exports
+=
+(phase
+,
+{ defaultConfig })
+=>
+{
+if
+(phase
+===
+PHASE_DEVELOPMENT_SERVER
+) {
+return
+{
+/* development only config options here */
+}
+}
+return
+{
+/* config options for all phases except development here */
+}
+}
+The commented lines are the place where you can put the configs allowed by
+next.config.js
+, which are
+defined in this file
+.
+However, none of the configs are required, and it's not necessary to understand what each config does. Instead, search for the features you need to enable or modify in this section and they will show you what to do.
+Avoid using new JavaScript features not available in your target Node.js version.
+next.config.js
+will not be parsed by Webpack, Babel or TypeScript.
+This page documents all the available configuration options:
+assetPrefix
+Learn how to use the assetPrefix config option to configure your CDN.
+basePath
+Use `basePath` to deploy a Next.js application under a sub-path of a domain.
+compress
+Next.js provides gzip compression to compress rendered content and static files, it only works with the server target. Learn more about it here.
+devIndicators
+Optimized pages include an indicator to let you know if it's being statically optimized. You can opt-out of it here.
+distDir
+Set a custom build directory to use instead of the default .next directory.
+env
+Learn to add and access environment variables in your Next.js application at build time.
+eslint
+Next.js reports ESLint errors and warnings during builds by default. Learn how to opt-out of this behavior here.
+exportPathMap
+Customize the pages that will be exported as HTML files when using `next export`.
+generateBuildId
+Configure the build id, which is used to identify the current build in which your application is being served.
+generateEtags
+Next.js will generate etags for every page by default. Learn more about how to disable etag generation here.
+headers
+Add custom HTTP headers to your Next.js app.
+httpAgentOptions
+Next.js will automatically use HTTP Keep-Alive by default. Learn more about how to disable HTTP Keep-Alive here.
+images
+Custom configuration for the next/image loader
+onDemandEntries
+Configure how Next.js will dispose and keep in memory pages created in development.
+output
+Next.js automatically traces which files are needed by each page to allow for easy deployment of your application. Learn how it works here.
+pageExtensions
+Extend the default page extensions used by Next.js when resolving pages in the Pages Router.
+poweredByHeader
+Next.js will add the `x-powered-by` header by default. Learn to opt-out of it here.
+productionBrowserSourceMaps
+Enables browser source map generation during the production build.
+reactStrictMode
+The complete Next.js runtime is now Strict Mode-compliant, learn how to opt-in
+redirects
+Add redirects to your Next.js app.
+rewrites
+Add rewrites to your Next.js app.
+Runtime Config
+Add client and server runtime configuration to your Next.js app.
+trailingSlash
+Configure Next.js pages to resolve with or without a trailing slash.
+transpilePackages
+Automatically transpile and bundle dependencies from local packages (like monorepos) or from external dependencies (`node_modules`).
+turbo
+Configure Next.js with Turbopack-specific options
+typescript
+Next.js reports TypeScript errors by default. Learn to opt-out of this behavior here.
+urlImports
+Configure Next.js to allow importing modules from external URLs (experimental).
+webpack
+Learn how to customize the webpack config used by Next.js
+webVitalsAttribution
+Learn how to use the webVitalsAttribution option to pinpoint the source of Web Vitals issues.
+Previous
+userAgent
+Next
+assetPrefix
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

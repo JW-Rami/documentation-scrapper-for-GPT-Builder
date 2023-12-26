@@ -1,0 +1,629 @@
+Configuring: Debugging | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Debugging with VS Code
+Using the Debugger in Jetbrains WebStorm
+Debugging with Chrome DevTools
+Client-side code
+Server-side code
+Debugging on Windows
+More information
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Configuring
+Debugging
+Debugging
+This documentation explains how you can debug your Next.js frontend and backend code with full source maps support using either the
+VS Code debugger
+or
+Chrome DevTools
+.
+Any debugger that can attach to Node.js can also be used to debug a Next.js application. You can find more details in the Node.js
+Debugging Guide
+.
+Debugging with VS Code
+Create a file named
+.vscode/launch.json
+at the root of your project with the following content:
+launch.json
+{
+"version"
+:
+"0.2.0"
+,
+"configurations"
+:
+[
+{
+"name"
+:
+"Next.js: debug server-side"
+,
+"type"
+:
+"node-terminal"
+,
+"request"
+:
+"launch"
+,
+"command"
+:
+"npm run dev"
+}
+,
+{
+"name"
+:
+"Next.js: debug client-side"
+,
+"type"
+:
+"chrome"
+,
+"request"
+:
+"launch"
+,
+"url"
+:
+"http://localhost:3000"
+}
+,
+{
+"name"
+:
+"Next.js: debug full stack"
+,
+"type"
+:
+"node-terminal"
+,
+"request"
+:
+"launch"
+,
+"command"
+:
+"npm run dev"
+,
+"serverReadyAction"
+:
+{
+"pattern"
+:
+"- Local:.+(https?://.+)"
+,
+"uriFormat"
+:
+"%s"
+,
+"action"
+:
+"debugWithChrome"
+}
+}
+]
+}
+npm run dev
+can be replaced with
+yarn dev
+if you're using Yarn. If you're
+changing the port number
+your application starts on, replace the
+3000
+in
+http://localhost:3000
+with the port you're using instead.
+Now go to the Debug panel (
+Ctrl+Shift+D
+on Windows/Linux,
+⇧+⌘+D
+on macOS), select a launch configuration, then press
+F5
+or select
+Debug: Start Debugging
+from the Command Palette to start your debugging session.
+Using the Debugger in Jetbrains WebStorm
+Click the drop down menu listing the runtime configuration, and click
+Edit Configurations...
+. Create a
+Javascript Debug
+debug configuration with
+http://localhost:3000
+as the URL. Customize to your liking (e.g. Browser for debugging, store as project file), and click
+OK
+. Run this debug configuration, and the selected browser should automatically open. At this point, you should have 2 applications in debug mode: the NextJS node application, and the client/ browser application.
+Debugging with Chrome DevTools
+Client-side code
+Start your development server as usual by running
+next dev
+,
+npm run dev
+, or
+yarn dev
+. Once the server starts, open
+http://localhost:3000
+(or your alternate URL) in Chrome. Next, open Chrome's Developer Tools (
+Ctrl+Shift+J
+on Windows/Linux,
+⌥+⌘+I
+on macOS), then go to the
+Sources
+tab.
+Now, any time your client-side code reaches a
+debugger
+statement, code execution will pause and that file will appear in the debug area. You can also press
+Ctrl+P
+on Windows/Linux or
+⌘+P
+on macOS to search for a file and set breakpoints manually. Note that when searching here, your source files will have paths starting with
+webpack://_N_E/./
+.
+Server-side code
+To debug server-side Next.js code with Chrome DevTools, you need to pass the
+--inspect
+flag to the underlying Node.js process:
+Terminal
+NODE_OPTIONS
+=
+'--inspect'
+next dev
+If you're using
+npm run dev
+or
+yarn dev
+then you should update the
+dev
+script on your
+package.json
+:
+package.json
+{
+"scripts"
+:
+{
+"dev"
+:
+"NODE_OPTIONS='--inspect' next dev"
+}
+}
+Launching the Next.js dev server with the
+--inspect
+flag will look something like this:
+Terminal
+Debugger
+listening
+on
+ws://127.0.0.1:
+9229
+/0cf90313-350d-
+4466
+-a748-cd60f4e47c95
+For
+help,
+see:
+https://nodejs.org/en/docs/inspector
+ready
+-
+started
+server
+on
+0.0.0.0:
+3000
+,
+url:
+http://localhost:
+3000
+Be aware that running
+NODE_OPTIONS='--inspect' npm run dev
+or
+NODE_OPTIONS='--inspect' yarn dev
+won't work. This would try to start multiple debuggers on the same port: one for the npm/yarn process and one for Next.js. You would then get an error like
+Starting inspector on 127.0.0.1:9229 failed: address already in use
+in your console.
+Once the server starts, open a new tab in Chrome and visit
+chrome://inspect
+, where you should see your Next.js application inside the
+Remote Target
+section. Click
+inspect
+under your application to open a separate DevTools window, then go to the
+Sources
+tab.
+Debugging server-side code here works much like debugging client-side code with Chrome DevTools, except that when you search for files here with
+Ctrl+P
+or
+⌘+P
+, your source files will have paths starting with
+webpack://{application-name}/./
+(where
+{application-name}
+will be replaced with the name of your application according to your
+package.json
+file).
+Debugging on Windows
+Windows users may run into an issue when using
+NODE_OPTIONS='--inspect'
+as that syntax is not supported on Windows platforms. To get around this, install the
+cross-env
+package as a development dependency (
+-D
+with
+npm
+and
+yarn
+) and replace the
+dev
+script with the following.
+package.json
+{
+"scripts"
+:
+{
+"dev"
+:
+"cross-env NODE_OPTIONS='--inspect' next dev"
+}
+}
+cross-env
+will set the
+NODE_OPTIONS
+environment variable regardless of which platform you are on (including Mac, Linux, and Windows) and allow you to debug consistently across devices and operating systems.
+Good to know
+: Ensure Windows Defender is disabled on your machine. This external service will check
+every file read
+, which has been reported to greatly increase Fast Refresh time with
+next dev
+. This is a known issue, not related to Next.js, but it does affect Next.js development.
+More information
+To learn more about how to use a JavaScript debugger, take a look at the following documentation:
+Node.js debugging in VS Code: Breakpoints
+Chrome DevTools: Debug JavaScript
+Previous
+Error Handling
+Next
+Preview Mode
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

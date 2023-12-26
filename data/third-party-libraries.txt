@@ -1,0 +1,834 @@
+Optimizing: Third Party Libraries | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Getting Started
+Google Third-Parties
+Google Tag Manager
+Sending Events
+Options
+Google Analytics
+Sending Events
+Options
+Google Maps Embed
+Options
+YouTube Embed
+Options
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Optimizing
+Third Party Libraries
+Third Party Libraries
+@next/third-parties
+is a library that provides a collection of components and utilities that
+improve the performance and developer experience of loading popular third-party libraries in your
+Next.js application.
+Good to know
+:
+@next/third-parties
+is a new
+experimental
+library that is still under
+active development. We're currently working on adding more third-party integrations.
+All third-party integrations provided by
+@next/third-parties
+have been optimized for performance
+and ease of use.
+Getting Started
+To get started, you must install the
+@next/third-parties
+library:
+Terminal
+npm
+install
+@next/third-parties
+Google Third-Parties
+All supported third-party libraries from Google can be imported from
+@next/third-parties/google
+.
+Google Tag Manager
+The
+GoogleTagManager
+component can be used to instantiate a
+Google Tag
+Manager
+container to your
+page. By default, it fetches the original inline script after hydration occurs on the page.
+To load Google Tag Manager for all routes, include the component directly in your custom
+_app
+:
+pages/_app.js
+import
+{ GoogleTagManager }
+from
+'@next/third-parties/google'
+export
+default
+function
+MyApp
+({ Component
+,
+pageProps }) {
+return
+(
+<>
+<
+Component
+{
+...
+pageProps} />
+<
+GoogleTagManager
+gtmId
+=
+"GTM-XYZ"
+/>
+</>
+)
+}
+To load Google Tag Manager for a single route, include the component in your page file:
+pages/index.js
+import
+{ GoogleTagManager }
+from
+'@next/third-parties/google'
+export
+default
+function
+Page
+() {
+return
+<
+GoogleTagManager
+gtmId
+=
+"GTM-XYZ"
+/>
+}
+Sending Events
+The
+sendGTMEvent
+function can be used to track user interactions on your page by sending events
+using the
+dataLayer
+object. For this function to work, the
+<GoogleTagManager />
+component must be
+included in either a parent layout, page, or component, or directly in the same file.
+pages/index.js
+import
+{ sendGTMEvent }
+from
+'@next/third-parties/google'
+export
+function
+EventButton
+() {
+return
+(
+<
+div
+>
+<
+button
+onClick
+=
+{()
+=>
+sendGTMEvent
+({ event
+:
+'buttonClicked'
+,
+value
+:
+'xyz'
+})}
+>
+Send Event
+</
+button
+>
+</
+div
+>
+)
+}
+Refer to the Tag Manager
+developer
+documentation
+to learn about the
+different variables and events that can be passed into the function.
+Options
+Options to pass to the Google Tag Manager. For a full list of options, read the
+Google Tag Manager
+docs
+.
+Name
+Type
+Description
+gtmId
+Required
+Your GTM container id.
+dataLayer
+Optional
+Data layer array to instantiate the container with. Defaults to an empty array.
+dataLayerName
+Optional
+Name of the data layer. Defaults to
+dataLayer
+.
+auth
+Optional
+Value of authentication parameter (
+gtm_auth
+) for environment snippets.
+preview
+Optional
+Value of preview parameter (
+gtm_preview
+) for environment snippets.
+Google Analytics
+The
+GoogleAnalytics
+component can be used to include
+Google Analytics
+4
+to your page via the Google tag
+(
+gtag.js
+). By default, it fetches the original scripts after hydration occurs on the page.
+Recommendation
+: If Google Tag Manager is already included in your application, you can
+configure Google Analytics directly using it, rather than including Google Analytics as a separate
+component. Refer to the
+documentation
+to learn more about the differences between Tag Manager and
+gtag.js
+.
+To load Google Analytics for all routes, include the component directly in your custom
+_app
+:
+pages/_app.js
+import
+{ GoogleAnalytics }
+from
+'@next/third-parties/google'
+export
+default
+function
+MyApp
+({ Component
+,
+pageProps }) {
+return
+(
+<>
+<
+Component
+{
+...
+pageProps} />
+<
+GoogleAnalytics
+gaId
+=
+"GA-XYZ"
+/>
+</>
+)
+}
+To load Google Analytics for a single route, include the component in your page file:
+pages/index.js
+import
+{ GoogleAnalytics }
+from
+'@next/third-parties/google'
+export
+default
+function
+Page
+() {
+return
+<
+GoogleAnalytics
+gaId
+=
+"GA-XYZ"
+/>
+}
+Sending Events
+The
+sendGAEvent
+function can be used to measure user interactions on your page by sending events
+using the
+dataLayer
+object. For this function to work, the
+<GoogleAnalytics />
+component must be
+included in either a parent layout, page, or component, or directly in the same file.
+pages/index.js
+import
+{ sendGAEvent }
+from
+'@next/third-parties/google'
+export
+function
+EventButton
+() {
+return
+(
+<
+div
+>
+<
+button
+onClick
+=
+{()
+=>
+sendGAEvent
+({ event
+:
+'buttonClicked'
+,
+value
+:
+'xyz'
+})}
+>
+Send Event
+</
+button
+>
+</
+div
+>
+)
+}
+Refer to the Google Analytics
+developer
+documentation
+to learn
+more about event parameters.
+Options
+Options to pass to the
+<GoogleAnalytics>
+component.
+Name
+Type
+Description
+gaId
+Required
+Your Google tag id.
+dataLayerName
+Optional
+Name of the data layer. Defaults to
+dataLayer
+.
+Google Maps Embed
+The
+GoogleMapsEmbed
+component can be used to add a
+Google Maps
+Embed
+to your page. By
+default, it uses the
+loading
+attribute to lazy-load the embed below the fold.
+pages/index.js
+import
+{ GoogleMapsEmbed }
+from
+'@next/third-parties/google'
+export
+default
+function
+Page
+() {
+return
+(
+<
+GoogleMapsEmbed
+apiKey
+=
+"XYZ"
+height
+=
+{
+200
+}
+width
+=
+"100%"
+mode
+=
+"place"
+q
+=
+"Brooklyn+Bridge,New+York,NY"
+/>
+)
+}
+Options
+Options to pass to the Google Maps Embed. For a full list of options, read the
+Google Map Embed
+docs
+.
+Name
+Type
+Description
+apiKey
+Required
+Your api key.
+mode
+Required
+Map mode
+height
+Optional
+Height of the embed. Defaults to
+auto
+.
+width
+Optional
+Width of the embed. Defaults to
+auto
+.
+style
+Optional
+Pass styles to the iframe.
+allowfullscreen
+Optional
+Property to allow certain map parts to go full screen.
+loading
+Optional
+Defaults to lazy. Consider changing if you know your embed will be above the fold.
+q
+Optional
+Defines map marker location.
+This may be required depending on the map mode
+.
+center
+Optional
+Defines the center of the map view.
+zoom
+Optional
+Sets initial zoom level of the map.
+maptype
+Optional
+Defines type of map tiles to load.
+language
+Optional
+Defines the language to use for UI elements and for the display of labels on map tiles.
+region
+Optional
+Defines the appropriate borders and labels to display, based on geo-political sensitivities.
+YouTube Embed
+The
+YouTubeEmbed
+component can be used to load and display a YouTube embed. This component loads
+faster by using
+lite-youtube-embed
+under the
+hood.
+pages/index.js
+import
+{ YouTubeEmbed }
+from
+'@next/third-parties/google'
+export
+default
+function
+Page
+() {
+return
+<
+YouTubeEmbed
+videoid
+=
+"ogfYd705cRs"
+height
+=
+{
+400
+}
+params
+=
+"controls=0"
+/>
+}
+Options
+Name
+Type
+Description
+videoid
+Required
+YouTube video id.
+width
+Optional
+Width of the video container. Defaults to
+auto
+height
+Optional
+Height of the video container. Defaults to
+auto
+playlabel
+Optional
+A visually hidden label for the play button for accessibility.
+params
+Optional
+The video player params defined
+here
+.
+Params are passed as a query param string.
+Eg:
+params="controls=0&start=10&end=30"
+style
+Optional
+Used to apply styles to the video container.
+Previous
+Instrumentation
+Next
+Configuring
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

@@ -1,0 +1,570 @@
+Upgrading: Version 13 | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Upgrading from 12 to 13
+v13 Summary
+Migrating shared features
+<Image/> Component
+<Link> Component
+<Script> Component
+Font Optimization
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Upgrading
+Version 13
+Version 13
+Upgrading from 12 to 13
+To update to Next.js version 13, run the following command using your preferred package manager:
+Terminal
+npm
+i
+next@
+13
+react@latest
+react-dom@latest
+eslint-config-next@
+13
+Terminal
+yarn
+add
+next@
+13
+react@latest
+react-dom@latest
+eslint-config-next@
+13
+Terminal
+pnpm
+i
+next@
+13
+react@latest
+react-dom@latest
+eslint-config-next@
+13
+Terminal
+bun
+add
+next@
+13
+react@latest
+react-dom@latest
+eslint-config-next@
+13
+Good to know:
+If you are using TypeScript, ensure you also upgrade
+@types/react
+and
+@types/react-dom
+to their latest versions.
+v13 Summary
+The
+Supported Browsers
+have been changed to drop Internet Explorer and target modern browsers.
+The minimum Node.js version has been bumped from 12.22.0 to 16.14.0, since 12.x and 14.x have reached end-of-life.
+The minimum React version has been bumped from 17.0.2 to 18.2.0.
+The
+swcMinify
+configuration property was changed from
+false
+to
+true
+. See
+Next.js Compiler
+for more info.
+The
+next/image
+import was renamed to
+next/legacy/image
+. The
+next/future/image
+import was renamed to
+next/image
+. A
+codemod is available
+to safely and automatically rename your imports.
+The
+next/link
+child can no longer be
+<a>
+. Add the
+legacyBehavior
+prop to use the legacy behavior or remove the
+<a>
+to upgrade. A
+codemod is available
+to automatically upgrade your code.
+The
+target
+configuration property has been removed and superseded by
+Output File Tracing
+.
+Migrating shared features
+Next.js 13 introduces a new
+app
+directory
+with new features and conventions. However, upgrading to Next.js 13 does
+not
+require using the new
+app
+directory
+.
+You can continue using
+pages
+with new features that work in both directories, such as the updated
+Image component
+,
+Link component
+,
+Script component
+, and
+Font optimization
+.
+<Image/>
+Component
+Next.js 12 introduced many improvements to the Image Component with a temporary import:
+next/future/image
+. These improvements included less client-side JavaScript, easier ways to extend and style images, better accessibility, and native browser lazy loading.
+Starting in Next.js 13, this new behavior is now the default for
+next/image
+.
+There are two codemods to help you migrate to the new Image Component:
+next-image-to-legacy-image
+: This codemod will safely and automatically rename
+next/image
+imports to
+next/legacy/image
+to maintain the same behavior as Next.js 12. We recommend running this codemod to quickly update to Next.js 13 automatically.
+next-image-experimental
+: After running the previous codemod, you can optionally run this experimental codemod to upgrade
+next/legacy/image
+to the new
+next/image
+, which will remove unused props and add inline styles. Please note this codemod is experimental and only covers static usage (such as
+<Image src={img} layout="responsive" />
+) but not dynamic usage (such as
+<Image {...props} />
+).
+Alternatively, you can manually update by following the
+migration guide
+and also see the
+legacy comparison
+.
+<Link>
+Component
+The
+<Link>
+Component
+no longer requires manually adding an
+<a>
+tag as a child. This behavior was added as an experimental option in
+version 12.2
+and is now the default. In Next.js 13,
+<Link>
+always renders
+<a>
+and allows you to forward props to the underlying tag.
+For example:
+import
+Link
+from
+'next/link'
+// Next.js 12: `<a>` has to be nested otherwise it's excluded
+<
+Link
+href
+=
+"/about"
+>
+<
+a
+>About</
+a
+>
+</
+Link
+>
+// Next.js 13: `<Link>` always renders `<a>` under the hood
+<
+Link
+href
+=
+"/about"
+>
+About
+</
+Link
+>
+To upgrade your links to Next.js 13, you can use the
+new-link
+codemod
+.
+<Script>
+Component
+The behavior of
+next/script
+has been updated to support both
+pages
+and
+app
+. If incrementally adopting
+app
+, read the
+upgrade guide
+.
+Font Optimization
+Previously, Next.js helped you optimize fonts by inlining font CSS. Version 13 introduces the new
+next/font
+module which gives you the ability to customize your font loading experience while still ensuring great performance and privacy.
+See
+Optimizing Fonts
+to learn how to use
+next/font
+.
+Previous
+Version 14
+Next
+Version 12
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

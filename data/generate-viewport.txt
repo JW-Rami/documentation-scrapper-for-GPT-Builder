@@ -1,0 +1,746 @@
+Functions: generateViewport | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+The viewport object
+generateViewport function
+Viewport Fields
+themeColor
+width, initialScale, and maximumScale
+colorScheme
+Types
+viewport object
+generateViewport function
+Regular function
+With segment props
+JavaScript Projects
+Version History
+Next Steps
+Edit this page on GitHub
+Scroll to top
+App Router
+...
+Functions
+generateViewport
+generateViewport
+You can customize the initial viewport of the page with the static
+viewport
+object or the dynamic
+generateViewport
+function.
+Good to know
+:
+The
+viewport
+object and
+generateViewport
+function exports are
+only supported in Server Components
+.
+You cannot export both the
+viewport
+object and
+generateViewport
+function from the same route segment.
+If you're coming from migrating
+metadata
+exports, you can use
+metadata-to-viewport-export codemod
+to update your changes.
+The
+viewport
+object
+To define the viewport options, export a
+viewport
+object from a
+layout.js
+or
+page.js
+file.
+layout.tsx | page.tsx
+import
+{ Viewport }
+from
+'next'
+export
+const
+viewport
+:
+Viewport
+=
+{
+themeColor
+:
+'black'
+,
+}
+export
+default
+function
+Page
+() {}
+generateViewport
+function
+generateViewport
+should return a
+Viewport
+object
+containing one or more viewport fields.
+layout.tsx | page.tsx
+export
+function
+generateViewport
+({ params }) {
+return
+{
+themeColor
+:
+'...'
+,
+}
+}
+Good to know
+:
+If the viewport doesn't depend on runtime information, it should be defined using the static
+viewport
+object
+rather than
+generateMetadata
+.
+Viewport Fields
+themeColor
+Learn more about
+theme-color
+.
+Simple theme color
+layout.js | page.js
+export
+const
+viewport
+=
+{
+themeColor
+:
+'black'
+,
+}
+<head> output
+<
+meta
+name
+=
+"theme-color"
+content
+=
+"black"
+/>
+With media attribute
+layout.js | page.js
+export
+const
+viewport
+=
+{
+themeColor
+:
+[
+{ media
+:
+'(prefers-color-scheme: light)'
+,
+color
+:
+'cyan'
+}
+,
+{ media
+:
+'(prefers-color-scheme: dark)'
+,
+color
+:
+'black'
+}
+,
+]
+,
+}
+<head> output
+<
+meta
+name
+=
+"theme-color"
+media
+=
+"(prefers-color-scheme: light)"
+content
+=
+"cyan"
+/>
+<
+meta
+name
+=
+"theme-color"
+media
+=
+"(prefers-color-scheme: dark)"
+content
+=
+"black"
+/>
+width
+,
+initialScale
+, and
+maximumScale
+Good to know
+: The
+viewport
+meta tag is automatically set with the following default values. Usually, manual configuration is unnecessary as the default is sufficient. However, the information is provided for completeness.
+layout.js | page.js
+export
+const
+viewport
+=
+{
+width
+:
+'device-width'
+,
+initialScale
+:
+1
+,
+maximumScale
+:
+1
+,
+// Also supported by less commonly used
+// interactiveWidget: 'resizes-visual',
+}
+<head> output
+<
+meta
+name
+=
+"viewport"
+content
+=
+"width=device-width, initial-scale=1, maximum-scale=1"
+/>
+colorScheme
+Learn more about
+color-scheme
+.
+layout.js | page.js
+export
+const
+viewport
+=
+{
+colorScheme
+:
+'dark'
+,
+}
+<head> output
+<
+meta
+name
+=
+"color-scheme"
+content
+=
+"dark"
+/>
+Types
+You can add type safety to your viewport object by using the
+Viewport
+type. If you are using the
+built-in TypeScript plugin
+in your IDE, you do not need to manually add the type, but you can still explicitly add it if you want.
+viewport
+object
+import
+type
+{ Viewport }
+from
+'next'
+export
+const
+viewport
+:
+Viewport
+=
+{
+themeColor
+:
+'black'
+,
+}
+generateViewport
+function
+Regular function
+import
+type
+{ Viewport }
+from
+'next'
+export
+function
+generateViewport
+()
+:
+Viewport
+{
+return
+{
+themeColor
+:
+'black'
+,
+}
+}
+With segment props
+import
+type
+{ Viewport }
+from
+'next'
+type
+Props
+=
+{
+params
+:
+{ id
+:
+string
+}
+searchParams
+:
+{ [key
+:
+string
+]
+:
+string
+|
+string
+[]
+|
+undefined
+}
+}
+export
+function
+generateViewport
+({ params
+,
+searchParams }
+:
+Props
+)
+:
+Viewport
+{
+return
+{
+themeColor
+:
+'black'
+,
+}
+}
+export
+default
+function
+Page
+({ params
+,
+searchParams }
+:
+Props
+) {}
+JavaScript Projects
+For JavaScript projects, you can use JSDoc to add type safety.
+/**
+@type
+{import("next").Viewport}
+*/
+export
+const
+viewport
+=
+{
+themeColor
+:
+'black'
+,
+}
+Version History
+Version
+Changes
+v14.0.0
+viewport
+and
+generateViewport
+introduced.
+Next Steps
+View all the Metadata API options.
+App Router
+...
+File Conventions
+Metadata Files
+API documentation for the metadata file conventions.
+App Router
+...
+Optimizing
+Metadata
+Use the Metadata API to define metadata in any layout or page.
+Previous
+generateStaticParams
+Next
+headers
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

@@ -1,0 +1,564 @@
+Functions: fetch | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+fetch(url, options)
+options.cache
+options.next.revalidate
+options.next.tags
+Version History
+Edit this page on GitHub
+Scroll to top
+App Router
+...
+Functions
+fetch
+fetch
+Next.js extends the native
+Web
+fetch()
+API
+to allow each request on the server to set its own persistent caching semantics.
+In the browser, the
+cache
+option indicates how a fetch request will interact with the
+browser's
+HTTP cache. With this extension,
+cache
+indicates how a
+server-side
+fetch request will interact with the framework's persistent HTTP cache.
+You can call
+fetch
+with
+async
+and
+await
+directly within Server Components.
+app/page.tsx
+export
+default
+async
+function
+Page
+() {
+// This request should be cached until manually invalidated.
+// Similar to `getStaticProps`.
+// `force-cache` is the default and can be omitted.
+const
+staticData
+=
+await
+fetch
+(
+`https://...`
+,
+{ cache
+:
+'force-cache'
+})
+// This request should be refetched on every request.
+// Similar to `getServerSideProps`.
+const
+dynamicData
+=
+await
+fetch
+(
+`https://...`
+,
+{ cache
+:
+'no-store'
+})
+// This request should be cached with a lifetime of 10 seconds.
+// Similar to `getStaticProps` with the `revalidate` option.
+const
+revalidatedData
+=
+await
+fetch
+(
+`https://...`
+,
+{
+next
+:
+{ revalidate
+:
+10
+}
+,
+})
+return
+<
+div
+>...</
+div
+>
+}
+fetch(url, options)
+Since Next.js extends the
+Web
+fetch()
+API
+, you can use any of the
+native options available
+.
+options.cache
+Configure how the request should interact with Next.js
+Data Cache
+.
+fetch
+(
+`https://...`
+,
+{ cache
+:
+'force-cache'
+|
+'no-store'
+})
+force-cache
+(default) - Next.js looks for a matching request in its Data Cache.
+If there is a match and it is fresh, it will be returned from the cache.
+If there is no match or a stale match, Next.js will fetch the resource from the remote server and update the cache with the downloaded resource.
+no-store
+- Next.js fetches the resource from the remote server on every request without looking in the cache, and it will not update the cache with the downloaded resource.
+Good to know
+:
+If you don't provide a
+cache
+option, Next.js will default to
+force-cache
+, unless a
+dynamic function
+such as
+cookies()
+is used, in which case it will default to
+no-store
+.
+The
+no-cache
+option behaves the same way as
+no-store
+in Next.js.
+options.next.revalidate
+fetch
+(
+`https://...`
+,
+{ next
+:
+{ revalidate
+:
+false
+|
+0
+|
+number } })
+Set the cache lifetime of a resource (in seconds).
+false
+- Cache the resource indefinitely. Semantically equivalent to
+revalidate: Infinity
+. The HTTP cache may evict older resources over time.
+0
+- Prevent the resource from being cached.
+number
+- (in seconds) Specify the resource should have a cache lifetime of at most
+n
+seconds.
+Good to know
+:
+If an individual
+fetch()
+request sets a
+revalidate
+number lower than the
+default
+revalidate
+of a route, the whole route revalidation interval will be decreased.
+If two fetch requests with the same URL in the same route have different
+revalidate
+values, the lower value will be used.
+As a convenience, it is not necessary to set the
+cache
+option if
+revalidate
+is set to a number since
+0
+implies
+cache: 'no-store'
+and a positive value implies
+cache: 'force-cache'
+.
+Conflicting options such as
+{ revalidate: 0, cache: 'force-cache' }
+or
+{ revalidate: 10, cache: 'no-store' }
+will cause an error.
+options.next.tags
+fetch
+(
+`https://...`
+,
+{ next
+:
+{ tags
+:
+[
+'collection'
+] } })
+Set the cache tags of a resource. Data can then be revalidated on-demand using
+revalidateTag
+. The max length for a custom tag is 256 characters.
+Version History
+Version
+Changes
+v13.0.0
+fetch
+introduced.
+Previous
+draftMode
+Next
+generateImageMetadata
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

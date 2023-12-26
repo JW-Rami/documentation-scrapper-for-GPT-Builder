@@ -1,0 +1,777 @@
+Routing: Linking and Navigating | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Linking to dynamic paths
+Injecting the router
+Imperative Routing
+Shallow Routing
+Caveats
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Routing
+Linking and Navigating
+Linking and Navigating
+The Next.js router allows you to do client-side route transitions between pages, similar to a single-page application.
+A React component called
+Link
+is provided to do this client-side route transition.
+import
+Link
+from
+'next/link'
+function
+Home
+() {
+return
+(
+<
+ul
+>
+<
+li
+>
+<
+Link
+href
+=
+"/"
+>Home</
+Link
+>
+</
+li
+>
+<
+li
+>
+<
+Link
+href
+=
+"/about"
+>About Us</
+Link
+>
+</
+li
+>
+<
+li
+>
+<
+Link
+href
+=
+"/blog/hello-world"
+>Blog Post</
+Link
+>
+</
+li
+>
+</
+ul
+>
+)
+}
+export
+default
+Home
+The example above uses multiple links. Each one maps a path (
+href
+) to a known page:
+/
+→
+pages/index.js
+/about
+→
+pages/about.js
+/blog/hello-world
+→
+pages/blog/[slug].js
+Any
+<Link />
+in the viewport (initially or through scroll) will be prefetched by default (including the corresponding data) for pages using
+Static Generation
+. The corresponding data for
+server-rendered
+routes is fetched
+only when
+the
+<Link />
+is clicked.
+Linking to dynamic paths
+You can also use interpolation to create the path, which comes in handy for
+dynamic route segments
+. For example, to show a list of posts which have been passed to the component as a prop:
+import
+Link
+from
+'next/link'
+function
+Posts
+({ posts }) {
+return
+(
+<
+ul
+>
+{
+posts
+.map
+((post)
+=>
+(
+<
+li
+key
+=
+{
+post
+.id}>
+<
+Link
+href
+=
+{
+`/blog/
+${
+encodeURIComponent
+(
+post
+.slug)
+}
+`
+}>
+{
+post
+.title}
+</
+Link
+>
+</
+li
+>
+))}
+</
+ul
+>
+)
+}
+export
+default
+Posts
+encodeURIComponent
+is used in the example to keep the path utf-8 compatible.
+Alternatively, using a URL Object:
+import
+Link
+from
+'next/link'
+function
+Posts
+({ posts }) {
+return
+(
+<
+ul
+>
+{
+posts
+.map
+((post)
+=>
+(
+<
+li
+key
+=
+{
+post
+.id}>
+<
+Link
+href
+=
+{{
+pathname
+:
+'/blog/[slug]'
+,
+query
+:
+{ slug
+:
+post
+.slug }
+,
+}}
+>
+{
+post
+.title}
+</
+Link
+>
+</
+li
+>
+))}
+</
+ul
+>
+)
+}
+export
+default
+Posts
+Now, instead of using interpolation to create the path, we use a URL object in
+href
+where:
+pathname
+is the name of the page in the
+pages
+directory.
+/blog/[slug]
+in this case.
+query
+is an object with the dynamic segment.
+slug
+in this case.
+Injecting the router
+Examples
+Dynamic Routing
+To access the
+router
+object
+in a React component you can use
+useRouter
+or
+withRouter
+.
+In general we recommend using
+useRouter
+.
+Imperative Routing
+Examples
+Using Router
+next/link
+should be able to cover most of your routing needs, but you can also do client-side navigations without it, take a look at the
+documentation for
+next/router
+.
+The following example shows how to do basic page navigations with
+useRouter
+:
+import
+{ useRouter }
+from
+'next/router'
+export
+default
+function
+ReadMore
+() {
+const
+router
+=
+useRouter
+()
+return
+(
+<
+button
+onClick
+=
+{()
+=>
+router
+.push
+(
+'/about'
+)}>
+Click here to read more
+</
+button
+>
+)
+}
+Shallow Routing
+Examples
+Shallow Routing
+Shallow routing allows you to change the URL without running data fetching methods again, that includes
+getServerSideProps
+,
+getStaticProps
+, and
+getInitialProps
+.
+You'll receive the updated
+pathname
+and the
+query
+via the
+router
+object
+(added by
+useRouter
+or
+withRouter
+), without losing state.
+To enable shallow routing, set the
+shallow
+option to
+true
+. Consider the following example:
+import
+{ useEffect }
+from
+'react'
+import
+{ useRouter }
+from
+'next/router'
+// Current URL is '/'
+function
+Page
+() {
+const
+router
+=
+useRouter
+()
+useEffect
+(()
+=>
+{
+// Always do navigations after the first render
+router
+.push
+(
+'/?counter=10'
+,
+undefined
+,
+{ shallow
+:
+true
+})
+}
+,
+[])
+useEffect
+(()
+=>
+{
+// The counter changed!
+}
+,
+[
+router
+.
+query
+.counter])
+}
+export
+default
+Page
+The URL will get updated to
+/?counter=10
+and the page won't get replaced, only the state of the route is changed.
+You can also watch for URL changes via
+componentDidUpdate
+as shown below:
+componentDidUpdate
+(prevProps) {
+const
+{
+pathname
+,
+query
+}
+=
+this
+.
+props
+.router
+// verify props have changed to avoid an infinite loop
+if
+(
+query
+.counter
+!==
+prevProps
+.
+router
+.
+query
+.counter) {
+// fetch data based on the new query
+}
+}
+Caveats
+Shallow routing
+only
+works for URL changes in the current page. For example, let's assume we have another page called
+pages/about.js
+, and you run this:
+router
+.push
+(
+'/?counter=10'
+,
+'/about?counter=10'
+,
+{ shallow
+:
+true
+})
+Since that's a new page, it'll unload the current page, load the new one and wait for data fetching even though we asked to do shallow routing.
+When shallow routing is used with middleware it will not ensure the new page matches the current page like previously done without middleware. This is due to middleware being able to rewrite dynamically and can't be verified client-side without a data fetch which is skipped with shallow, so a shallow route change must always be treated as shallow.
+Previous
+Dynamic Routes
+Next
+Custom App
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

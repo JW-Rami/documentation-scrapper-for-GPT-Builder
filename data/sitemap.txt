@@ -1,0 +1,844 @@
+Metadata Files: sitemap.xml | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using App Router
+Features available in /app
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Sitemap files (.xml)
+Generating a sitemap using code (.js, .ts)
+Generating multiple sitemaps
+Returns
+Version History
+Next Steps
+Edit this page on GitHub
+Scroll to top
+App Router
+...
+Metadata Files
+sitemap.xml
+sitemap.xml
+sitemap.(xml|js|ts)
+is a special file that matches the
+Sitemaps XML format
+to help search engine crawlers index your site more efficiently.
+Sitemap files (.xml)
+For smaller applications, you can create a
+sitemap.xml
+file and place it in the root of your
+app
+directory.
+app/sitemap.xml
+<
+urlset
+xmlns
+=
+"http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+<
+url
+>
+<
+loc
+>https://acme.com</
+loc
+>
+<
+lastmod
+>2023-04-06T15:02:24.021Z</
+lastmod
+>
+<
+changefreq
+>yearly</
+changefreq
+>
+<
+priority
+>1</
+priority
+>
+</
+url
+>
+<
+url
+>
+<
+loc
+>https://acme.com/about</
+loc
+>
+<
+lastmod
+>2023-04-06T15:02:24.021Z</
+lastmod
+>
+<
+changefreq
+>monthly</
+changefreq
+>
+<
+priority
+>0.8</
+priority
+>
+</
+url
+>
+<
+url
+>
+<
+loc
+>https://acme.com/blog</
+loc
+>
+<
+lastmod
+>2023-04-06T15:02:24.021Z</
+lastmod
+>
+<
+changefreq
+>weekly</
+changefreq
+>
+<
+priority
+>0.5</
+priority
+>
+</
+url
+>
+</
+urlset
+>
+Generating a sitemap using code (.js, .ts)
+You can use the
+sitemap.(js|ts)
+file convention to programmatically
+generate
+a sitemap by exporting a default function that returns an array of URLs. If using TypeScript, a
+Sitemap
+type is available.
+app/sitemap.ts
+import
+{ MetadataRoute }
+from
+'next'
+export
+default
+function
+sitemap
+()
+:
+MetadataRoute
+.
+Sitemap
+{
+return
+[
+{
+url
+:
+'https://acme.com'
+,
+lastModified
+:
+new
+Date
+()
+,
+changeFrequency
+:
+'yearly'
+,
+priority
+:
+1
+,
+}
+,
+{
+url
+:
+'https://acme.com/about'
+,
+lastModified
+:
+new
+Date
+()
+,
+changeFrequency
+:
+'monthly'
+,
+priority
+:
+0.8
+,
+}
+,
+{
+url
+:
+'https://acme.com/blog'
+,
+lastModified
+:
+new
+Date
+()
+,
+changeFrequency
+:
+'weekly'
+,
+priority
+:
+0.5
+,
+}
+,
+]
+}
+Output:
+acme.com/sitemap.xml
+<
+urlset
+xmlns
+=
+"http://www.sitemaps.org/schemas/sitemap/0.9"
+>
+<
+url
+>
+<
+loc
+>https://acme.com</
+loc
+>
+<
+lastmod
+>2023-04-06T15:02:24.021Z</
+lastmod
+>
+<
+changefreq
+>yearly</
+changefreq
+>
+<
+priority
+>1</
+priority
+>
+</
+url
+>
+<
+url
+>
+<
+loc
+>https://acme.com/about</
+loc
+>
+<
+lastmod
+>2023-04-06T15:02:24.021Z</
+lastmod
+>
+<
+changefreq
+>monthly</
+changefreq
+>
+<
+priority
+>0.8</
+priority
+>
+</
+url
+>
+<
+url
+>
+<
+loc
+>https://acme.com/blog</
+loc
+>
+<
+lastmod
+>2023-04-06T15:02:24.021Z</
+lastmod
+>
+<
+changefreq
+>weekly</
+changefreq
+>
+<
+priority
+>0.5</
+priority
+>
+</
+url
+>
+</
+urlset
+>
+Generating multiple sitemaps
+While a single sitemap will work for most applications. For large web applications, you may need to split a sitemap into multiple files.
+There are two ways you can create multiple sitemaps:
+By nesting
+sitemap.(xml|js|ts)
+inside multiple route segments e.g.
+app/sitemap.xml
+and
+app/products/sitemap.xml
+.
+By using the
+generateSitemaps
+function.
+For example, to split a sitemap using
+generateSitemaps
+, return an array of objects with the sitemap
+id
+. Then, use the
+id
+to generate the unique sitemaps.
+app/product/sitemap.ts
+import
+{ BASE_URL }
+from
+'@/app/lib/constants'
+export
+async
+function
+generateSitemaps
+() {
+// Fetch the total number of
+product
+s and calculate the number of sitemaps needed
+return
+[{ id
+:
+0
+}
+,
+{ id
+:
+1
+}
+,
+{ id
+:
+2
+}
+,
+{ id
+:
+3
+}]
+}
+export
+default
+async
+function
+sitemap
+({
+id
+,
+}
+:
+{
+id
+:
+number
+})
+:
+MetadataRoute
+.
+Sitemap
+{
+// Google's limit is 50,000 URLs per sitemap
+const
+start
+=
+id
+*
+50000
+const
+end
+=
+start
++
+50000
+const
+product
+s
+=
+await
+getProducts
+(
+`SELECT id, date FROM
+product
+s WHERE id BETWEEN
+${
+start
+}
+AND
+${
+end
+}
+`
+)
+return
+product
+s
+.map
+((
+product
+)
+=>
+({
+url
+:
+`
+${
+BASE_URL
+}
+/
+product
+/
+${
+id
+}
+`
+,
+lastModified
+:
+product
+.date
+,
+}))
+}
+In production, your generated sitemaps will be available at
+/.../sitemap/[id].xml
+. For example,
+/product/sitemap/1.xml
+.
+In development, you can view the generated sitemap on
+/.../sitemap.xml/[id]
+. For example,
+/product/sitemap.xml/1
+. This difference is temporary and will follow the production format.
+See the
+generateSitemaps
+API reference
+for more information.
+Returns
+The default function exported from
+sitemap.(xml|ts|js)
+should return an array of objects with the following properties:
+type
+Sitemap
+=
+Array
+<{
+url
+:
+string
+lastModified
+?:
+string
+|
+Date
+changeFrequency
+?:
+|
+'always'
+|
+'hourly'
+|
+'daily'
+|
+'weekly'
+|
+'monthly'
+|
+'yearly'
+|
+'never'
+priority
+?:
+number
+}>
+Version History
+Version
+Changes
+v13.3.0
+sitemap
+introduced.
+v13.4.5
+Add
+changeFrequency
+and
+priority
+attributes to sitemaps.
+Next Steps
+Learn how to use the generateSitemaps function.
+App Router
+...
+Functions
+generateSitemaps
+Learn how to use the generateSiteMaps function to create multiple sitemaps for your application.
+Previous
+robots.txt
+Next
+Functions
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.

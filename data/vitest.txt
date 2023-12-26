@@ -1,0 +1,589 @@
+Testing: Vitest | Next.js
+Skip to content
+Search documentation...
+Search...
+⌘K
+Showcase
+Docs
+Blog
+Analytics
+Templates
+Enterprise
+Search documentation...
+Search...
+⌘K
+Feedback
+Learn
+Menu
+Using Pages Router
+Features available in /pages
+Getting Started
+Installation
+Project Structure
+Building Your Application
+Routing
+Defining Routes
+Pages and Layouts
+Linking and Navigating
+Route Groups
+Dynamic Routes
+Loading UI and Streaming
+Error Handling
+Parallel Routes
+Intercepting Routes
+Route Handlers
+Middleware
+Project Organization
+Internationalization
+Data Fetching
+Fetching, Caching, and Revalidating
+Server Actions and Mutations
+Data Fetching Patterns and Best Practices
+Rendering
+Server Components
+Client Components
+Composition Patterns
+Edge and Node.js Runtimes
+Caching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Metadata
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+MDX
+src Directory
+Draft Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Static Exports
+Upgrading
+Codemods
+App Router Migration
+Version 14
+Migrating from Vite
+API Reference
+Components
+Font
+<Image>
+<Link>
+<Script>
+File Conventions
+default.js
+error.js
+layout.js
+loading.js
+not-found.js
+page.js
+route.js
+Route Segment Config
+template.js
+Metadata Files
+favicon, icon, and apple-icon
+manifest.json
+opengraph-image and twitter-image
+robots.txt
+sitemap.xml
+Functions
+cookies
+draftMode
+fetch
+generateImageMetadata
+generateMetadata
+generateSitemaps
+generateStaticParams
+generateViewport
+headers
+ImageResponse
+NextRequest
+NextResponse
+notFound
+permanentRedirect
+redirect
+revalidatePath
+revalidateTag
+unstable_cache
+unstable_noStore
+useParams
+usePathname
+useReportWebVitals
+useRouter
+useSearchParams
+useSelectedLayoutSegment
+useSelectedLayoutSegments
+userAgent
+next.config.js Options
+appDir
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+incrementalCacheHandlerPath
+logging
+mdxRs
+onDemandEntries
+optimizePackageImports
+output
+pageExtensions
+Partial Prerendering (experimental)
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+serverActions
+serverComponentsExternalPackages
+trailingSlash
+transpilePackages
+turbo
+typedRoutes
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Edge Runtime
+Next.js CLI
+Building Your Application
+Routing
+Pages and Layouts
+Dynamic Routes
+Linking and Navigating
+Custom App
+Custom Document
+Custom Errors
+API Routes
+Internationalization
+Authenticating
+Middleware
+Rendering
+Server-side Rendering (SSR)
+Static Site Generation (SSG)
+Automatic Static Optimization
+Client-side Rendering (CSR)
+Edge and Node.js Runtimes
+Data Fetching
+getStaticProps
+getStaticPaths
+Forms and Mutations
+getServerSideProps
+Incremental Static Regeneration
+Client-side Fetching
+Styling
+CSS Modules
+Tailwind CSS
+CSS-in-JS
+Sass
+Optimizing
+Images
+Fonts
+Scripts
+Static Assets
+Lazy Loading
+Analytics
+OpenTelemetry
+Instrumentation
+Third Party Libraries
+Configuring
+TypeScript
+ESLint
+Environment Variables
+Absolute Imports and Module Path Aliases
+src Directory
+MDX
+AMP
+Babel
+PostCSS
+Custom Server
+Draft Mode
+Error Handling
+Debugging
+Preview Mode
+Content Security Policy
+Testing
+Vitest
+Jest
+Playwright
+Cypress
+Deploying
+Going to Production
+Static Exports
+Multi Zones
+Continuous Integration (CI) Build Caching
+Upgrading
+Codemods
+From Pages to App
+Version 14
+Version 13
+Version 12
+Version 11
+Version 10
+Version 9
+API Reference
+Components
+Font
+<Head>
+<Image>
+<Image> (Legacy)
+<Link>
+<Script>
+Functions
+getInitialProps
+getServerSideProps
+getStaticPaths
+getStaticProps
+NextRequest
+NextResponse
+useAmp
+useReportWebVitals
+useRouter
+userAgent
+next.config.js Options
+assetPrefix
+basePath
+compress
+devIndicators
+distDir
+env
+eslint
+exportPathMap
+generateBuildId
+generateEtags
+headers
+httpAgentOptions
+images
+onDemandEntries
+output
+pageExtensions
+poweredByHeader
+productionBrowserSourceMaps
+reactStrictMode
+redirects
+rewrites
+Runtime Config
+trailingSlash
+transpilePackages
+turbo
+typescript
+urlImports
+webpack
+webVitalsAttribution
+create-next-app
+Next.js CLI
+Edge Runtime
+Architecture
+Accessibility
+Fast Refresh
+Next.js Compiler
+Supported Browsers
+Turbopack
+Community
+Contribution Guide
+On this page
+Quickstart
+Manual Setup
+Creating your first Vitest Unit Test
+Running your tests
+Additional Resources
+Edit this page on GitHub
+Scroll to top
+Pages Router
+...
+Testing
+Vitest
+Setting up Vitest with Next.js
+Vite and React Testing Library are frequently used together for
+Unit Testing
+. This guide will show you how to setup Vitest with Next.js and write your first tests.
+Good to know:
+Since
+async
+Server Components are new to the React ecosystem, Vitest currently does not support them. While you can still run
+unit tests
+for synchronous Server and Client Components, we recommend using an
+E2E tests
+for
+async
+components.
+Quickstart
+You can use
+create-next-app
+with the Next.js
+with-vitest
+example to quickly get started:
+Terminal
+npx
+create-next-app@latest
+--example
+with-vitest
+with-vitest-app
+Manual Setup
+To manually set up Vitest, install
+vitest
+and the following packages as dev dependencies:
+Terminal
+npm
+install
+-D
+vitest
+@vitejs/plugin-react
+jsdom
+@testing-library/react
+# or
+yarn
+add
+-D
+vitest
+@vitejs/plugin-react
+jsdom
+@testing-library/react
+@vitejs/plugin-react
+# or
+pnpm
+install
+-D
+vitest
+@vitejs/plugin-react
+jsdom
+@testing-library/react
+# or
+bun
+add
+-D
+vitest
+@vitejs/plugin-react
+jsdom
+@testing-library/react
+Create a
+vitest.config.ts|js
+file in the root of your project, and add the following options:
+vitest.config.ts
+import
+{ defineConfig }
+from
+'vitest/config'
+import
+react
+from
+'@vitejs/plugin-react'
+export
+default
+defineConfig
+({
+plugins
+:
+[
+react
+()]
+,
+test
+:
+{
+environment
+:
+'jsdom'
+,
+}
+,
+})
+For more information on configuring Vitest, please refer to the
+Vitest Cofiguration
+docs.
+Then, add a
+test
+script to your
+package.json
+:
+package.json
+{
+"scripts"
+:
+{
+"dev"
+:
+"next dev"
+,
+"build"
+:
+"next build"
+,
+"start"
+:
+"next start"
+,
+"test"
+:
+"vitest"
+}
+}
+When you run
+npm run test
+, Vitest will
+watch
+for changes in your project by default.
+Creating your first Vitest Unit Test
+Check that everything is working by creating a test to check if the
+<Page />
+component successfully renders a heading:
+pages/index.tsx
+import
+Link
+from
+'next/link'
+export
+default
+function
+Page
+() {
+return
+(
+<
+div
+>
+<
+h1
+>Home</
+h1
+>
+<
+Link
+href
+=
+"/about"
+>About</
+Link
+>
+</
+div
+>
+)
+}
+__tests__/index.test.tsx
+import
+{ expect
+,
+test }
+from
+'vitest'
+import
+{ render
+,
+screen }
+from
+'@testing-library/react'
+import
+Page
+from
+'../pages/index'
+test
+(
+'Page'
+,
+()
+=>
+{
+render
+(<
+Page
+/>)
+expect
+(
+screen
+.getByRole
+(
+'heading'
+,
+{ level
+:
+1
+,
+name
+:
+'Home'
+}))
+.toBeDefined
+()
+})
+Running your tests
+Then, run the following command to run your tests:
+Terminal
+npm
+run
+test
+# or
+yarn
+test
+# or
+pnpm
+test
+Additional Resources
+You may find these resources helpful:
+Next.js with Vitest example
+Vitest Docs
+React Testing Library Docs
+Previous
+Testing
+Next
+Jest
+Was this helpful?
+supported.
+Send
+Resources
+Docs
+Learn
+Showcase
+Blog
+Analytics
+Next.js Conf
+Previews
+More
+Commerce
+Contact Sales
+GitHub
+Releases
+Telemetry
+About
+Vercel
+Next.js + Vercel
+Open Source Software
+GitHub
+Twitter
+Legal
+Privacy Policy
+Cookie Preferences
+Subscribe to our newsletter
+Stay updated on new releases and features, guides, and case studies.
+Subscribe
+©
+2023
+Vercel
+, Inc.
