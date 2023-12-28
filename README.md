@@ -12,7 +12,7 @@
 
 #### Third Step:
 
-- Run `python scrapwebsiteDataSelenium.py` in the terminal for getting all the links you scrapped in nextjs_doc_links.txt. It will create a files for every link you scrapped in the step 2
+- Run `python scrapwebsiteDataSelenium.py` in the terminal for getting all the links you scrapped in nextjs_doc_links.txt. It will create a files with websites content for every link you scrapped in the step 2
 
 #### Fourth Step:
 
