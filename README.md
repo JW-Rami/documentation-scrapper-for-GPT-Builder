@@ -1,3 +1,7 @@
+# Concept
+
+I created theses scripts in order to scrapp documentation websites in order to merge all the data into one file and give it like a context for create GPT Builder specialized in specific technos.
+
 ## Setup
 
 ### First Step:
