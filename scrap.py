@@ -15,6 +15,6 @@ def scrape_nextjs_docs(base_url, file_name):
         else:
             print('Failed to retrieve the documentation')
 
-base_url = 'https://nextjs.org/docs'
-file_name = 'nextjs_doc_links.txt'
+base_url = 'https://nextjs.org/'
+file_name = 'website_doc_links.txt'
 scrape_nextjs_docs(base_url, file_name)

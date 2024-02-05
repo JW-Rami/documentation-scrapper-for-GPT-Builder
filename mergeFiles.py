@@ -4,7 +4,7 @@ import os
 dossier_data = "./data"
 
 # Définissez le nom du fichier de sortie
-fichier_sortie = "documentation_nextjs_concatenee.txt"
+fichier_sortie = "documentation_concatenee.txt"
 
 # Créez ou ouvrez le fichier de sortie
 with open(fichier_sortie, "w", encoding="utf-8") as sortie:

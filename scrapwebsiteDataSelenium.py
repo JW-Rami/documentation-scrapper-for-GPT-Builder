@@ -19,7 +19,7 @@ service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
 # Lisez les liens à partir du fichier et scrapez chaque page
-with open('nextjs_doc_links.txt', 'r') as links_file:
+with open('website_doc_links.txt', 'r') as links_file:
     for url in links_file:
         url = url.strip()  # Enlever les espaces blancs et les sauts de ligne
         content = scrape_content_and_save(url, driver)

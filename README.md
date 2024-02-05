@@ -1,5 +1,12 @@
 ### Setup
 
+### Before begin install dependances:
+
+- `pip install requests`
+- `pip install beautifulsoup4`
+- `pip install selenium`
+- `pip install webdriver-manager`
+
 ##### First Step:
 
 - Choose the website url you want to scrap
